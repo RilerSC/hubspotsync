@@ -1,173 +1,160 @@
-# HUBSPOT_SYNC - Sistema de Sincronización Empresarial
+# HubSpot Sync
 
-```
-================================================================================
-                        HUBSPOT SYNC - SISTEMA PRINCIPAL
-================================================================================
+🚀 **Sistema de Sincronización Empresarial HubSpot ↔ SQL Server**
 
-Proyecto:           Sistema de Sincronización HubSpot ↔ SQL Server
-Versión:            2.0 - Optimizada sin pandas
-Descripción:        Sistema empresarial para sincronización automatizada de datos
-                   entre HubSpot CRM y SQL Server con análisis dinámico de 
-                   propiedades y optimizaciones de rendimiento.
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![License](https://img.shields.io/badge/License-Proprietary-red)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
 
-Autor:              Ing. Jose Ríler Solórzano Campos
-Fecha de Creación:  11 de julio de 2025
-Derechos de Autor:  © 2025 Jose Ríler Solórzano Campos. Todos los derechos reservados.
-Licencia:           Uso exclusivo del autor. Prohibida la distribución sin autorización.
+## 📋 Descripción
 
-================================================================================
-```
+Sistema empresarial avanzado para la sincronización automatizada de datos entre **HubSpot CRM** y **SQL Server**. Optimizado para máximo rendimiento con análisis dinámico de propiedades y procesamiento en lotes.
 
-Sistema de sincronización de datos entre HubSpot y SQL Server, optimizado para máximo rendimiento.
+### ✨ Características Destacadas
 
-## 🚀 Características Principales
+- **🚀 70% menos uso de memoria** - Sistema optimizado sin pandas
+- **⚡ 50% más rápido** que versiones anteriores  
+- **🔍 Análisis dinámico** de propiedades HubSpot
+- **📊 Sincronización completa** de todas las entidades
+- **🛡️ Manejo robusto de errores** con fallbacks automáticos
+- **📦 Paquete completo** para Windows Server
 
-- **70% menos uso de memoria** (eliminado pandas)
-- **50% más rápido** que la versión anterior
-- **Tiempo de inicio 5x más rápido**
-- **Sincronización completa** de Deals, Tickets, Contacts, Owners y Pipelines
-- **Paquete para Windows Server** listo para producción
-- **Análisis dinámico** de propiedades para optimización automática
-- **Deduplicación automática** y manejo robusto de errores
+## 🎯 Entidades Sincronizadas
 
-## � Capacidades del Sistema
+| Entidad | Descripción | Volumen Típico |
+|---------|-------------|----------------|
+| **Deals** | Negocios y oportunidades de venta | ~2,000 registros |
+| **Tickets** | Tickets de soporte y servicio | ~1,100 registros |
+| **Contacts** | Contactos y leads | ~5,000 registros |
+| **Owners** | Propietarios y usuarios | ~25 registros |
+| **Pipelines** | Estructuras de procesos | ~155 registros |
 
-| Entidad | Volumen Típico | Propiedades Analizadas | Tiempo Estimado |
-|---------|---------------|----------------------|-----------------|
-| **Deals** | ~2,000 registros | ~100 de 905 disponibles | 2-3 minutos |
-| **Tickets** | ~1,100 registros | ~270 de 606 disponibles | 1-2 minutos |
-| **Contacts** | ~5,000 registros | ~260 de 568 disponibles | 3-4 minutos |
-| **Owners** | ~25 registros | 11 propiedades fijas | 30 segundos |
-| **Pipelines** | ~155 registros | Estructura completa | 1 minuto |
+## 📊 Rendimiento
 
-## �📁 Estructura del Proyecto Optimizada
+- **Tiempo total de sincronización**: 6-8 minutos
+- **Propiedades analizadas**: 500+ automáticamente
+- **Tablas SQL generadas**: 6 tablas optimizadas
+- **Compatibilidad**: Python 3.9+ / SQL Server 2016+
 
-```
-HUBSPOT_SYNC/
-├── main.py                          # Script principal con documentación completa
-├── hubspot/                          # Módulos especializados por entidad
-│   ├── __init__.py                  # Inicializador del paquete
-│   ├── fetch_deals.py               # Extractor de deals con análisis dinámico
-│   ├── fetch_tickets.py             # Extractor de tickets con transformaciones
-│   ├── fetch_contacts.py            # Extractor de contactos optimizado
-│   ├── fetch_owners.py              # Extractor de propietarios y equipos
-│   ├── fetch_deals_pipelines.py     # Extractor de etapas de ventas
-│   └── fetch_tickets_pipelines.py   # Extractor de etapas de soporte
-├── HUBSPOT_SYNC_PYTHON_PACKAGE/     # Paquete para Windows Server
-│   ├── install.bat                  # Instalador automático de dependencias
-│   ├── run_sync.bat                 # Ejecución manual del sincronizador
-│   ├── run_sync_scheduled.bat       # Ejecución para tareas programadas
-│   ├── task_scheduler.ps1           # Configurador automático de tareas
-│   ├── requirements.txt             # Dependencias optimizadas sin pandas
-│   └── README.txt                   # Guía de implementación Windows
-└── .env                             # Variables de configuración (no incluido)
-│   └── hubspot/                    # Módulos duplicados para independencia
-└── README.md                       # Esta documentación
+## 🚀 Instalación Rápida
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/RilerSC/hubspotsync.git
+cd hubspotsync
 ```
 
-## ⚡ Optimizaciones Aplicadas
-
-- **Eliminado pandas**: Uso de estructuras nativas de Python
-- **Eliminado código duplicado**: Archivos _bk.py removidos
-- **Eliminadas dependencias innecesarias**: Solo lo esencial
-- **Limpieza de archivos temporales**: Sin cache ni builds
-- **Estructura simplificada**: Solo archivos funcionales
-
-## 🛠 Instalación Local (macOS/Linux)
-
-1. **Clonar entorno virtual:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # En macOS/Linux
-   ```
-
-2. **Instalar dependencias:**
-   ```bash
-   pip install python-dotenv==1.0.0 pyodbc==4.0.39 tabulate==0.9.0 requests==2.31.0 urllib3==1.26.16
-   ```
-
-3. **Configurar variables de entorno:**
-   ```bash
-   cp .env.template .env
-   # Editar .env con tus credenciales
-   ```
-
-4. **Ejecutar:**
-   ```bash
-   python main.py
-   ```
-
-## 🏢 Instalación en Windows Server
-
-Usar el paquete `HUBSPOT_SYNC_PYTHON_PACKAGE/`:
-
-1. **Copiar carpeta completa al servidor**
-2. **Ejecutar como Administrador:** `install.bat`
-3. **Configurar credenciales:** Editar `.env`
-4. **Probar:** `run_sync.bat`
-5. **Programar:** `task_scheduler.ps1`
-
-## 📊 Datos Sincronizados
-
-| Entidad | Tabla SQL | Propiedades | Descripción |
-|---------|-----------|-------------|-------------|
-| Deals | hb_deals | ~102 | Oportunidades de venta |
-| Tickets | hb_tickets | ~274 | Tickets de soporte |
-| Contacts | hb_contacts | ~225 | Contactos CRM |
-| Owners | hb_owners | ~11 | Propietarios/Usuarios |
-| Deal Pipelines | hb_deals_pipeline | ~11 | Configuración de deals |
-| Ticket Pipelines | hb_tickets_pipeline | ~13 | Configuración de tickets |
-
-## 🔧 Dependencias
-
-```txt
-python-dotenv==1.0.0    # Variables de entorno
-pyodbc==4.0.39          # Conectividad SQL Server
-tabulate==0.9.0         # Formateo de tablas
-requests==2.31.0        # Peticiones HTTP
-urllib3==1.26.16        # Manejo de URLs
+### 2. Configurar ambiente virtual
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# .venv\Scripts\activate   # Windows
 ```
 
-## 📈 Rendimiento
+### 3. Instalar dependencias
+```bash
+pip install -r requirements.txt
+```
 
-- **Memoria**: ~500MB vs ~1.7GB (anterior)
-- **Tiempo inicio**: ~3 seg vs ~15 seg
-- **Velocidad sync**: 50% más rápido
-- **Tamaño paquete**: 80% más pequeño
+### 4. Configurar credenciales
+```bash
+cp .env.example .env
+# Editar .env con tus credenciales de HubSpot y SQL Server
+```
 
-## 🚀 Uso
-
-```python
+### 5. Ejecutar sincronización
+```bash
 python main.py
 ```
 
-El script automáticamente:
-1. ✅ Verifica configuración
-2. 🔹 Procesa Deals
-3. 🎫 Procesa Tickets  
-4. 👥 Procesa Contacts
-5. 👨‍💼 Procesa Owners
-6. 📊 Procesa Pipelines
-7. ✅ Muestra resumen final
+## ⚙️ Configuración
 
-## 🔐 Variables de Entorno
+### Variables de Entorno Requeridas
 
 ```env
-# HubSpot
-HUBSPOT_TOKEN=tu_token_aqui
+# HubSpot API
+HUBSPOT_TOKEN=tu_token_de_hubspot_aqui
 
 # SQL Server
-SQL_SERVER=servidor.database.windows.net
-SQL_DATABASE=base_datos
-SQL_USER=usuario
-SQL_PASSWORD=contraseña
+SQL_SERVER=tu_servidor_sql.ejemplo.com
+SQL_DATABASE=nombre_de_tu_base_de_datos
+SQL_USER=tu_usuario_sql
+SQL_PASSWORD=tu_contraseña_sql
 ```
 
-## 📝 Logs y Monitoreo
+### Requisitos del Sistema
 
-- **Manual**: Salida en consola con emojis y colores
-- **Programado**: Logs automáticos en `sync_log.txt`
-- **Errores**: Manejo robusto con fallbacks
+- **Python**: 3.9 o superior
+- **SQL Server**: 2016 o superior con ODBC Driver 17
+- **Memoria RAM**: Mínimo 4GB (recomendado 8GB)
+- **Espacio en disco**: 500MB libres
 
-¡Proyecto limpio y optimizado! 🎉
+## 📁 Estructura del Proyecto
+
+```
+hubspotsync/
+├── main.py                     # Script principal
+├── requirements.txt            # Dependencias
+├── .env.example               # Plantilla de configuración
+├── hubspot/                   # Módulos de extracción
+│   ├── fetch_deals.py        # Sincronización de deals
+│   ├── fetch_tickets.py      # Sincronización de tickets
+│   ├── fetch_contacts.py     # Sincronización de contactos
+│   ├── fetch_owners.py       # Sincronización de owners
+│   └── fetch_*_pipelines.py  # Sincronización de pipelines
+├── HUBSPOT_SYNC_PYTHON_PACKAGE/  # Paquete para Windows
+└── docs/                      # Documentación técnica
+```
+
+## 🛠️ Uso Avanzado
+
+### Para Windows Server
+Utiliza el paquete completo en `HUBSPOT_SYNC_PYTHON_PACKAGE/` con scripts de instalación automatizados.
+
+### Programación Automática
+```bash
+# Ejecutar cada hora
+0 * * * * /path/to/.venv/bin/python /path/to/main.py
+
+# Ejecutar diariamente a las 6 AM
+0 6 * * * /path/to/.venv/bin/python /path/to/main.py
+```
+
+## 📊 Tablas SQL Generadas
+
+| Tabla | Descripción |
+|-------|-------------|
+| `hb_deals` | Datos completos de deals |
+| `hb_tickets` | Datos completos de tickets |
+| `hb_contacts` | Datos completos de contactos |
+| `hb_owners` | Información de owners |
+| `hb_deals_pipeline` | Estructura de pipelines de deals |
+| `hb_tickets_pipeline` | Estructura de pipelines de tickets |
+
+## 🔧 Solución de Problemas
+
+### Error de Conexión SQL Server
+- Verificar ODBC Driver 17 instalado
+- Confirmar credenciales y permisos
+- Validar conectividad de red
+
+### Error de Token HubSpot
+- Verificar token válido en HubSpot Settings
+- Confirmar permisos de API necesarios
+- Revisar límites de rate limiting
+
+## 👨‍💻 Autor
+
+**Ing. Jose Ríler Solórzano Campos**
+- 🏢 Especialista en Integración de Sistemas CRM
+- 📧 Contacto: [Información disponible en el código fuente]
+- 📅 Proyecto iniciado: Julio 2025
+
+## 📄 Licencia
+
+© 2025 Jose Ríler Solórzano Campos. Todos los derechos reservados.  
+**Uso exclusivo del autor. Prohibida la distribución sin autorización.**
+
+---
+
+⭐ **¿Te gusta este proyecto?** ¡Dale una estrella en GitHub!
