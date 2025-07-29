@@ -1,0 +1,54 @@
+# Archivos de configuración sensibles
+.env
+*.env
+
+# Cache de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ambiente virtual
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Archivos de Excel/datos de muestra
+*.xlsx
+*.xls
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos de configuración local
+config.local.*
+settings.local.*
+
+# Archivos de certificados
+*.pem
+*.key
+*.crt
+
+# Base de datos locales
+*.db
+*.sqlite
+*.sqlite3

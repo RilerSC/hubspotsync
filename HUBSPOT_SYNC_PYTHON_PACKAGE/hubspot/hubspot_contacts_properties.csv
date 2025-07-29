@@ -1,0 +1,536 @@
+﻿Nombre de Propiedad,Etiqueta,Tipo,Grupo,Descripción
+acta_de_fallecimiento,Acta de Fallecimiento,string,contact_activity,
+acta_de_matrimonio,Acta de matrimonio,string,contact_activity,
+acta_de_nacimiento,Acta de nacimiento,string,contactinformation,
+address,Street Address,string,contactinformation,"Contact's street address, including apartment or unit number."
+aircall_contact_owner_email,Correo del Propietario del Contacto Aircall,string,aircall,Correo electrónico del propietario del contacto de Aircall
+aircall_last_call_at,Last Aircall call timestamp,datetime,aircall,Date and time of last Aircall call
+aircall_last_sms_at,Last Aircall SMS timestamp,datetime,aircall,Date and time of last Aircall sms
+aircall_last_sms_direction,Last Aircall SMS direction,string,aircall,SMS direction
+al_marcar_esta_casilla__autorizo_a_coopebanacio_a_realizar_el_rebajo_de_planilla_segun_las_opciones,"Al marcar esta casilla, autorizo a Coopebanacio a realizar el rebajo de planilla según las opciones elegidas en este formulario para efectuar la donación a Obras del Espíritu Santo a mi nombre.",enumeration,contactinformation,"Disclaimer donación obras del espiritu santo, octubre 24"
+annualrevenue,Annual Revenue,string,contactinformation,Annual company revenue
+ano_del_vehiculo,Año del vehículo,number,deal_information,
+apellidos_de_quien_refiere,Apellidos de quien refiere,string,contactinformation,Apellidos de quien refiere a afiliarse
+apellidos_del_referido,Apellidos del referido,string,contactinformation,Apellidos del referido a asociarse
+associatedcompanyid,Primary Associated Company ID,number,contactinformation,HubSpot defined ID of a contact's primary associated company in HubSpot.
+associatedcompanylastupdated,Associated Company Last Updated,number,contactinformation,"This field is meaningless on its own, and is solely used for triggering dynamic list updates when a company is updated"
+cantidad_de_hijos,Cantidad de Hijos,number,contactinformation,
+canton,Cantón,string,contactinformation,
+carta_disponibilidad_de_servicios_publicos,Carta disponibilidad de servicios públicos,string,deal_information,
+cedula_de_quien_refiere,Cédula de quien refiere,number,contactinformation,
+cedula_del_referido,Cédula del referido,number,contactinformation,Cédula del referido
+cedula_del_representante_legal,Cédula del representante legal,string,deal_information,
+certificacion_de_deuda,Certificación de deuda,string,deal_information,
+certificacion_de_impuestos_municipales,Certificación de impuestos municipales,string,deal_information,
+certificacion_de_la_situacion_especial,Certificación de la situación especial,string,contact_activity,
+certificacion_personeria_juridica,Certificación personería jurídica,string,deal_information,
+certificado_de_adopcion,Certificado de Adopción,string,contactinformation,
+city,City,string,contactinformation,A contact's city of residence
+closedate,Close Date,datetime,deal_information,Date the  contact  became  a  customer. Set automatically when a deal or opportunity is marked as closed-won. It can also be set manually or programmatically.
+comentarios,Comentarios,string,deal_information,
+como_desea_realizar_su_donacion_,¿Cómo desea realizar su donación?,enumeration,deal_information,"Monto de donación obras del espiritu santo, campaña noviembre 2024"
+company,Company Name,string,contactinformation,Name of the contact's company. This can be set independently from the name property on the contact's associated company.
+company_size,Company size,string,facebook_ads_properties,Contact's company size. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+con_ahorro,Con Ahorro,enumeration,contactinformation,
+con_ahorro_con_proposito,Con Ahorro con Propósito,enumeration,contactinformation,
+con_ahorro_economias,Con Ahorro Economías,enumeration,contactinformation,
+con_ahorro_fondo_de_inversion,Con Ahorro Fondo de Inversión,enumeration,contactinformation,
+con_ahorro_navideno,Con Ahorro Navideño,enumeration,contactinformation,
+con_ahorro_plan_aguinaldo,Con Ahorro Plan Aguinaldo,enumeration,contactinformation,
+con_ahorro_plan_bono_escolar,Con Ahorro Plan Bono Escolar,enumeration,contactinformation,
+con_ahorro_plan_futuro,Con Ahorro Plan Futuro,enumeration,contactinformation,
+con_ahorro_plan_vacacional,Con Ahorro Plan Vacacional,enumeration,contactinformation,
+con_cesantia,Con Cesantía,enumeration,contactinformation,
+con_cip,Con CIP,enumeration,contactinformation,
+con_cred__adelanto_de_pension,Con Cred. Adelanto de Pensión,enumeration,contactinformation,
+con_cred__back_to_back,Con Cred. Back to Back,enumeration,contactinformation,
+con_cred__capital_social,Con Cred. Capital Social,enumeration,contactinformation,
+con_cred__capitalizable_3,Con Cred. Capitalizable 3,enumeration,contactinformation,
+con_cred__consumo_personal,Con Cred. Consumo Personal,enumeration,contactinformation,
+con_cred__deuda_unica,Con Cred. Deuda Única,enumeration,contactinformation,
+con_cred__especial_al_vencimiento,Con Cred. Especial al Vencimiento,enumeration,contactinformation,
+con_cred__facilito,Con Cred. Facilito,enumeration,contactinformation,
+con_cred__multiuso,Con Cred. Multiuso,enumeration,contactinformation,
+con_cred__refuncion_2,Con Cred. Refunción 2,enumeration,contactinformation,
+con_cred__refundicion_de_pasivos,Con Cred. Refundición de Pasivos,enumeration,contactinformation,
+con_cred__salud,Con Cred. Salud,enumeration,contactinformation,
+con_cred__tecnologico,Con Créd. Tecnológico,enumeration,contactinformation,
+con_cred__vehiculo_nuevos,Con Cred. Vehículo Nuevos,enumeration,contactinformation,
+con_cred__vivienda_constructivo,Con Cred. Vivienda Constructivo,enumeration,contactinformation,
+con_cred__vivienda_cooperativa,Con Cred. Vivienda Cooperativa,enumeration,contactinformation,
+con_cred_vivienda_patrimonial,Con Cred Vivienda Patrimonial,enumeration,contactinformation,
+con_credifacil,Con Credifacil,enumeration,contactinformation,
+con_credito,Con Crédito,enumeration,contactinformation,
+con_plan_fin_de_ano,Con Plan Fin de Año,enumeration,contactinformation,
+con_poliza_colectiva,Con Póliza Colectiva,enumeration,contactinformation,
+con_seg__apoyo_funerario,Con Seg. Apoyo Funerario,enumeration,contactinformation,
+con_seg__su_vida,Con Seg. Su Vida,enumeration,contactinformation,
+con_seguro,Con Seguro,enumeration,contactinformation,
+confirmacion_reglamento,Confirmación Reglamento,enumeration,conversioninformation,
+country,Country/Region,string,contactinformation,"The contact's country/region of residence. This might be set via import, form, or integration."
+createdate,Create Date,datetime,contactinformation,The date that a contact entered the system
+cronograma_de_desembolsos_de_construccion,Cronograma de desembolsos de construcción,string,deal_information,
+currentlyinworkflow,Currently in workflow (discontinued),enumeration,contact_activity,True when contact is enrolled in a workflow.
+date_of_birth,Fecha de nacimiento,date,facebook_ads_properties,La fecha de nacimiento de un contacto. Esta propiedad es necesaria para la integración de Anuncios de Facebook. Esta propiedad se sincronizará automáticamente desde la herramienta de Anuncios de Leads.
+days_to_close,Days To Close,number,deal_information,Count of days elapsed between creation and being closed as a customer. Set automatically.
+deduccion_quincenal_en__,Deducción quincenal en ¢,number,contactinformation,
+deduccion_semanal_en__,Deducción semanal en ¢,number,contactinformation,
+degree,Degree,string,facebook_ads_properties,Contact's degree. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+detalles_de_la_direccion,Detalles de la dirección,string,contactinformation,
+distrito,Distrito,string,contactinformation,
+documento_que_compruebe_la_afectacion,Documento que compruebe la afectación,string,contact_activity,
+dorso_cedula_de_identidad,Dorso cédula de identidad,string,contactinformation,
+dorso_cedula_de_identidad_del_beneficiario_1,Dorso Cédula de identidad del beneficiario 1,string,contact_activity,
+dorso_cedula_de_identidad_del_conyuge,Dorso Cédula de identidad del cónyuge,string,contact_activity,
+dorso_cedula_del_familiar_fallecido,Dorso Cédula del familiar fallecido,string,contact_activity,
+dorso_cedula_del_vendedor,Dorso cédula del vendedor,string,deal_information,
+el_familiar_fallecido_enfrentaba_alguna_condicion_especial_,¿El familiar fallecido enfrentaba alguna condición especial?,enumeration,contactinformation,
+el_vehiculo_posee_credito_prendario_activo___,¿El vehículo posee crédito prendario activo? *,enumeration,deal_information,
+el_vehiculo_se_encuentra_en_proceso_de_traspaso_,¿El vehículo se encuentra en proceso de traspaso?,enumeration,deal_information,
+elija_tipo_de_situacion,Elija tipo de situación,enumeration,contactinformation,
+email,Email,string,contactinformation,A contact's email address
+engagements_last_meeting_booked,Date of last meeting booked in meetings tool,datetime,contact_activity,"The date of the last meeting that has been scheduled by a contact through the meetings tool. If multiple meetings have been scheduled, the date of the last chronological meeting in the timeline is shown."
+engagements_last_meeting_booked_campaign,Campaign of last booking in meetings tool,string,contact_activity,UTM parameter for marketing campaign (e.g. a specific email) responsible for recent meeting booking. Only populated when tracking parameters are included in meeting link.
+engagements_last_meeting_booked_medium,Medium of last booking in meetings tool,string,contact_activity,UTM parameter for the channel (e.g. email)  responsible for most recent meeting booking. Only populated when tracking parameters are included in meeting link.
+engagements_last_meeting_booked_source,Source of last booking in meetings tool,string,contact_activity,UTM parameter for the site (e.g. Twitter) responsible for most recent meeting booking. Only populated when tracking parameters are included in meeting link.
+estado_civil,Estado civil,enumeration,contactinformation,
+estado_del_asociado,Estado del Asociado,enumeration,contactinformation,
+estudio_emitido_por_el_delegado,Estudio emitido por el delegado,string,contactinformation,
+factura_proforma_del_vehiculo,Factura proforma del vehículo,string,deal_information,
+facturas,Facturas,string,contact_activity,
+fax,Fax Number,string,contactinformation,A contact's primary fax number
+fecha_de_tu_ingreso,Fecha de tu ingreso,date,contactinformation,
+field_of_study,Field of study,string,facebook_ads_properties,Contact's field of study. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+first_conversion_date,First Conversion Date,datetime,contact_activity,Date  this  contact  first  submitted  a  form.
+first_conversion_event_name,First Conversion,string,contact_activity,First form this contact submitted.
+first_deal_created_date,First Deal Created Date,datetime,deal_information,Date first deal was created for contact. Set automatically.
+firstname,First Name,string,contactinformation,A contact's first name
+followercount,Follower Count,number,socialmediainformation,The number of Twitter followers a contact has
+formulario_de_administracion_de_cesantia,Formulario de administración de Cesantía,string,contact_activity,
+formulario_de_credito,Formulario de crédito,string,deal_information,
+formulario_seguro_colectivo_tiempo,Formulario Seguro Colectivo Tiempo,string,contactinformation,
+fotografias_del_evento_o_incidente,Fotografías del evento o incidente,string,contact_activity,
+frente_cedula_de_identidad,Frente cédula de identidad,string,contactinformation,
+frente_cedula_de_identidad_del_beneficiario_1,Frente Cédula de identidad del beneficiario 1,string,contact_activity,
+frente_cedula_de_identidad_del_conyuge,Frente Cédula de identidad del cónyuge,string,contact_activity,
+frente_cedula_del_familiar_fallecido,Frente Cédula del familiar fallecido,string,contactinformation,
+frente_cedula_del_vendedor,Frente cédula del vendedor,string,deal_information,
+gender,Gender,string,facebook_ads_properties,Contact's gender. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+graduation_date,Graduation date,string,facebook_ads_properties,Contact's graduation date. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+hs_additional_emails,Additional email addresses,enumeration,contactinformation,A set of additional email addresses for a contact
+hs_all_accessible_team_ids,All teams,enumeration,contactinformation,"The team IDs, including the team hierarchy, of all default and custom owner properties for this record."
+hs_all_assigned_business_unit_ids,Brands,enumeration,contactinformation,The brands this record is assigned to.
+hs_all_contact_vids,All vids for a contact,enumeration,contactinformation,"A set of all vids, canonical or otherwise, for a contact"
+hs_all_owner_ids,All owner IDs,enumeration,contactinformation,Values of all default and custom owner properties for this record.
+hs_all_team_ids,All team IDs,enumeration,contactinformation,The team IDs of all default and custom owner properties for this record.
+hs_analytics_average_page_views,Average Pageviews,number,analyticsinformation,Average number of pageviews per session for this contact. Set automatically.
+hs_analytics_first_referrer,First Referring Site,string,analyticsinformation,URL that referred the contact to your website. Set automatically.
+hs_analytics_first_timestamp,Time First Seen,datetime,analyticsinformation,First time the contact has been seen. Set automatically.
+hs_analytics_first_touch_converting_campaign,First Touch Converting Campaign,string,analyticsinformation,Campaign responsible for the first touch creation of this contact.
+hs_analytics_first_url,First Page Seen,string,analyticsinformation,First page the contact visited on your website. Set automatically.
+hs_analytics_first_visit_timestamp,Time of First Session,datetime,analyticsinformation,First time the contact visited your website. Set automatically.
+hs_analytics_last_referrer,Last Referring Site,string,analyticsinformation,Last URL that referred contact to your website. Set automatically.
+hs_analytics_last_timestamp,Time Last Seen,datetime,analyticsinformation,Timestamp for most recent webpage view on your website.
+hs_analytics_last_touch_converting_campaign,Last Touch Converting Campaign,string,analyticsinformation,Campaign responsible for the last touch creation of this contact.
+hs_analytics_last_url,Last Page Seen,string,analyticsinformation,Last page the contact visited on your website. Set automatically.
+hs_analytics_last_visit_timestamp,Time of Last Session,datetime,analyticsinformation,Timestamp for start of the most recent session for this contact to your website.
+hs_analytics_num_event_completions,Number of event completions,number,analyticsinformation,Total number of events for this contact. Set automatically.
+hs_analytics_num_page_views,Number of Pageviews,number,analyticsinformation,Total number of page views this contact has had on your website. Set automatically.
+hs_analytics_num_visits,Number of Sessions,number,analyticsinformation,Number of times a contact has come to your website. Set automatically.
+hs_analytics_revenue,Event Revenue,number,analyticsinformation,Set event revenue on a contact though the Enterprise Events feature. http://help.hubspot.com/articles/KCS_Article/Reports/How-do-I-create-Events-in-HubSpot
+hs_analytics_source,Original Traffic Source,enumeration,analyticsinformation,"First known source the contact used to find your website. Set automatically, but may be updated manually."
+hs_analytics_source_data_1,Original Traffic Source Drill-Down 1,string,analyticsinformation,Additional information about the source the contact used to find your website. Set automatically.
+hs_analytics_source_data_2,Original Traffic Source Drill-Down 2,string,analyticsinformation,Additional information about the source the contact used to find your website. Set automatically.
+hs_associated_target_accounts,Associated Target Accounts,number,contactinformation,The number of target accounts associated with this contact
+hs_avatar_filemanager_key,Avatar FileManager key,string,contactinformation,The path in the FileManager CDN for this contact's avatar override image. Automatically set by HubSpot.
+hs_buying_role,Buying Role,enumeration,deal_information,"Role the contact plays during the sales process. Contacts can have multiple roles, and can share roles with others."
+hs_calculated_form_submissions,The 800 most recent form submissions for a contact,enumeration,contactinformation,The 800 most recent form submissions for a contact
+hs_calculated_merged_vids,Merged vids with timestamps of a contact,enumeration,contactinformation,Merged vids with timestamps of a contact
+hs_calculated_mobile_number,Calculated Mobile Number in International Format,string,contactinformation,Mobile number in international format
+hs_calculated_phone_number,Calculated Phone Number in International Format,string,contactinformation,Phone number in international format
+hs_calculated_phone_number_area_code,Calculated Phone Number Area Code,string,contactinformation,Area Code of the calculated phone number
+hs_calculated_phone_number_country_code,Calculated Phone Number Country Code,string,contactinformation,Country code of the calculated phone number
+hs_calculated_phone_number_region_code,Calculated Phone Number Region,string,contactinformation,ISO2 Country code for the derived phone number
+hs_clicked_linkedin_ad,Clicked on a LinkedIn Ad,enumeration,conversioninformation,Whether contact has clicked on a LinkedIn Ad
+hs_contact_enrichment_opt_out,Enrichment opt out,bool,contactinformation,
+hs_contact_enrichment_opt_out_timestamp,Enrichment opt out timestamp,datetime,contactinformation,Timestamp of when the contact opted out of being included in the HubSpot Enrichment database
+hs_content_membership_email,Member email,string,contactinformation,Email used to send private content information to members
+hs_content_membership_email_confirmed,Email Confirmed,bool,contactinformation,Email Confirmation status of user of Content Membership
+hs_content_membership_follow_up_enqueued_at,Time enrolled in registration follow up emails,datetime,contactinformation,The time when the contact was first enrolled in the registration follow up email flow
+hs_content_membership_notes,Membership Notes,string,contact_activity,Notes relating to the contact's content membership.
+hs_content_membership_registered_at,Registered At,datetime,contactinformation,Datetime at which this user was set up for Content Membership
+hs_content_membership_registration_domain_sent_to,Domain to which registration email was sent,string,contactinformation,Domain to which the registration invitation email for Content Membership was sent to
+hs_content_membership_registration_email_sent_at,Time registration email was sent,datetime,contactinformation,Datetime at which this user was sent a registration invitation email for Content Membership
+hs_content_membership_status,Status,enumeration,contact_activity,Status of the contact's content membership.
+hs_conversations_visitor_email,Conversations visitor email,string,contactinformation,A Conversations visitor's email address
+hs_count_is_unworked,Count of unengaged contacts,number,contactinformation,"if contact is assigned and unworked, set to 1. if contact is assigned and worked, set to 0."
+hs_count_is_worked,Count of engaged contacts,number,contactinformation,"if contact is assigned and worked, set to 1. if contact is assigned and unworked, set to 0."
+hs_country_region_code,Country/Region Code,string,contactinformation,The contact's two-letter country code.
+hs_created_by_conversations,Created By Conversations,bool,contactinformation,Flag indicating this contact was created by the Conversations API
+hs_created_by_user_id,Created by user ID,number,contactinformation,The user who created this record. This value is set automatically by HubSpot.
+hs_createdate,Object create date/time,datetime,contactinformation,The date and time at which this object was created. This value is automatically set by HubSpot and may not be modified.
+hs_currently_enrolled_in_prospecting_agent,Currently Enrolled in Prospecting Agent,bool,contactinformation,Indicates whether or not the contact has an active prospecting agent enrollment
+hs_data_privacy_ads_consent,Ads Consent from Forms,bool,contactinformation,This property captures ads consents from forms and is used by consentmanager to create / update associated data privacy consent objects
+hs_date_entered_customer,Date entered 'Cliente (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_evangelist,Date entered 'Evangelizador (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_lead,Date entered 'Lead (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_marketingqualifiedlead,Date entered 'Marketing Qualified Lead (Lifecycle Stage Pipeline)',datetime,contact_activity,"The date and time when the contact entered the 'Marketing Qualified Lead' stage, 'Lifecycle Stage Pipeline' pipeline"
+hs_date_entered_opportunity,Date entered 'Oportunidad (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_other,Date entered 'Otra (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_salesqualifiedlead,Date entered 'Lead calificado por ventas (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_entered_subscriber,Date entered 'Suscriptor (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact entered the 'Suscriptor' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_customer,Date exited 'Cliente (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_evangelist,Date exited 'Evangelizador (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_lead,Date exited 'Lead (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_marketingqualifiedlead,Date exited 'Marketing Qualified Lead (Lifecycle Stage Pipeline)',datetime,contact_activity,"The date and time when the contact exited the 'Marketing Qualified Lead' stage, 'Lifecycle Stage Pipeline' pipeline"
+hs_date_exited_opportunity,Date exited 'Oportunidad (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_other,Date exited 'Otra (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_salesqualifiedlead,Date exited 'Lead calificado por ventas (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_date_exited_subscriber,Date exited 'Suscriptor (Pipeline de etapa del ciclo de vida)',datetime,contact_activity,"The date and time when the contact exited the 'Suscriptor' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_document_last_revisited,Recent Document Revisit Date,datetime,contactinformation,The last time a shared document (presentation) was accessed by this contact
+hs_email_bad_address,Invalid email address,bool,emailinformation,The email address associated with this contact is invalid.
+hs_email_bounce,Marketing emails bounced,number,emailinformation,The number of marketing emails that bounced for the current email address. This is automatically set by HubSpot.
+hs_email_click,Marketing emails clicked,number,emailinformation,The number of marketing emails which have had link clicks for the current email address. This is automatically set by HubSpot.
+hs_email_customer_quarantined_reason,Email address quarantine reason,enumeration,emailinformation,The reason why the email address has been quarantined.
+hs_email_delivered,Marketing emails delivered,number,emailinformation,The number of marketing emails delivered for the current email address. This is automatically set by HubSpot.
+hs_email_domain,Email Domain,string,contactinformation,A contact's email address domain
+hs_email_first_click_date,First marketing email click date,datetime,emailinformation,The date of the earliest link click for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_first_open_date,First marketing email open date,datetime,emailinformation,The date of the earliest open for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_first_reply_date,First marketing email reply date,datetime,emailinformation,The date of the earliest reply for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_first_send_date,First marketing email send date,datetime,emailinformation,The date of the earliest delivery for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_hard_bounce_reason,Email hard bounce reason,string,emailinformation,"The issue that caused a contact to hard bounce from your emails. If this is an error or a temporary issue, you can unbounce this contact from the contact record."
+hs_email_hard_bounce_reason_enum,Email hard bounce reason,enumeration,emailinformation,"The issue that caused a contact to hard bounce from your emails. If this is an error or a temporary issue, you can unbounce this contact from the contact record."
+hs_email_is_ineligible,Is globally ineligible,bool,emailinformation,Indicates the contact is globally ineligible for email.
+hs_email_last_click_date,Last marketing email click date,datetime,emailinformation,The date of the most recent link click for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_last_email_name,Last marketing email name,string,emailinformation,The name of the last marketing email sent to the current email address. This is automatically set by HubSpot.
+hs_email_last_open_date,Last marketing email open date,datetime,emailinformation,The date of the most recent open for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_last_reply_date,Last marketing email reply date,datetime,emailinformation,The date of the latest reply for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_last_send_date,Last marketing email send date,datetime,emailinformation,The date of the most recent delivery for any marketing email to the current email address. This is automatically set by HubSpot.
+hs_email_open,Marketing emails opened,number,emailinformation,The number of marketing emails opened for the current email address. This is automatically set by HubSpot.
+hs_email_optimal_send_day_of_week,Optimal Marketing Email Send Day of Week,string,emailinformation,
+hs_email_optimal_send_time_of_day,Optimal Marketing Email Send Time of Day ,string,emailinformation,
+hs_email_optout,Unsubscribed from all email,bool,emailinformation,Indicates that the current email address has opted out of all email.
+hs_email_optout_314083230,Opted out of email: One to One,enumeration,emailinformation,Indicates that the current email address has opted out of this email type.
+hs_email_optout_314083234,Opted out of email: Informaciones de Marketing,enumeration,emailinformation,Indicates that the current email address has opted out of this email type.
+hs_email_optout_531024859,Opted out of email: Customer Service Communication,enumeration,emailinformation,Indicates that the current email address has opted out of this email type.
+hs_email_quarantined,Email Address Quarantined,bool,emailinformation,Indicates that the current email address has been quarantined for anti-abuse reasons and any marketing email sends to it will be blocked. This is automatically set by HubSpot.
+hs_email_quarantined_reason,Email address automated quarantine reason,enumeration,emailinformation,The automated reason why the email address has been quarantined.
+hs_email_recipient_fatigue_recovery_time,Email Address Recipient Fatigue Next Available Sending Time,datetime,emailinformation,"When this recipient has reached the limit of email sends per time period, this property indicates the next available time to send. This is automatically set by HubSpot."
+hs_email_replied,Marketing emails replied,number,emailinformation,The number of marketing emails replied to by the current email address. This is automatically set by HubSpot.
+hs_email_sends_since_last_engagement,Sends Since Last Engagement,number,emailinformation,The number of marketing emails that have been sent to the current email address since the last engagement (open or link click). This is automatically set by HubSpot.
+hs_emailconfirmationstatus,Marketing email confirmation status,enumeration,emailinformation,The status of a contact's eligibility to receive marketing email. This is automatically set by HubSpot.
+hs_employment_change_detected_date,Employment change detected date,date,emailinformation,Date contact confirmed no longer employed at current company
+hs_enriched_email_bounce_detected,Enriched Email Bounce Detected,bool,emailinformation,Bounce Detected attribute is populated when Hubspot & it’s partners identify the email may not be deliverable or is no longer valid for that contact.
+hs_facebook_ad_clicked,Clicked Facebook ad,bool,conversioninformation,Whether contact has clicked a Facebook ad
+hs_facebook_click_id,Facebook click id,string,conversioninformation,
+hs_facebookid,Facebook ID,string,socialmediainformation,A contact's facebook id
+hs_feedback_last_ces_survey_date,Last CES survey date,datetime,contact_activity,The time that this contact last submitted a CES survey response.
+hs_feedback_last_ces_survey_follow_up,Last CES survey comment,string,contact_activity,Last CES survey comment from this contact.
+hs_feedback_last_ces_survey_rating,Last CES survey rating,number,contact_activity,Last CES survey rating from this contact.
+hs_feedback_last_csat_survey_date,Last CSAT survey date,datetime,contact_activity,The time that this contact last submitted a CSAT survey response. This is automatically set by HubSpot.
+hs_feedback_last_csat_survey_follow_up,Last CSAT survey comment,string,contact_activity,Last CSAT survey comment from this contact.
+hs_feedback_last_csat_survey_rating,Last CSAT survey rating,number,contact_activity,Last CSAT survey rating from this contact.
+hs_feedback_last_nps_follow_up,Last NPS survey comment,string,contact_activity,Last NPS survey comment that this contact gave
+hs_feedback_last_nps_rating,Last NPS survey rating,enumeration,contact_activity,Last NPS survey rating that this contact gave
+hs_feedback_last_survey_date,Last NPS survey date,datetime,contact_activity,The time that this contact last submitted a NPS survey response. This is automatically set by HubSpot.
+hs_feedback_show_nps_web_survey,Should be shown an NPS web survey,bool,contactinformation,Whether or not a contact should be shown an NPS web survey. This is automatically set by HubSpot.
+hs_first_closed_order_id,First Closed Order ID,number,order_information,The id of the associated order that was first to be closed
+hs_first_engagement_object_id,ID of first engagement,number,contactinformation,The object id of the current contact owner's first engagement with the contact.
+hs_first_order_closed_date,First Order Closed Date,datetime,order_information,Date first order was closed. Set Automatically
+hs_first_outreach_date,First outreach date,datetime,contactinformation,"The date of the first outreach (call, email, meeting or other communication) from a sales rep to the contact."
+hs_first_subscription_create_date,First subscription create date,datetime,contactinformation,The create date of the first subscription by the contact.
+hs_full_name_or_email,Full name or email,string,contactinformation,"A contact's full name, formatting first name and last name by I18n/utils/formatName, fall back to email."
+hs_google_click_id,Google ad click id,string,conversioninformation,
+hs_googleplusid,googleplus ID,string,socialmediainformation,A contact's googleplus id
+hs_has_active_subscription,Contact has an active subscription,number,contactinformation,The rollup property value is 1 when the contact has an active Subscription or 0 otherwise.
+hs_ip_timezone,IP Timezone,string,conversioninformation,The timezone reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+hs_is_contact,Is a contact,bool,contactinformation,"Is a contact, has not been deleted and is not a visitor"
+hs_is_enriched,Has been enriched,bool,contactinformation,Indicates whether this object has ever had enriched properties written to it.
+hs_is_unworked,Contact unworked,bool,sales_properties,Contact  has  not  been  assigned  or  has  not  been  engaged  after  last  owner  assignment/re-assignment
+hs_job_change_detected_date,Job change detected date,date,emailinformation,Date contact confirmed no longer employed at current company
+hs_journey_stage,Journey Stage,enumeration,contactinformation,"Track the status of a contact through a customer journey. It can be set through journeys, manually on a per contact basis, and through other tools."
+hs_language,Preferred language,enumeration,contactinformation,"Set your contact's preferred language for communications. This property can be changed from an import, form, or integration."
+hs_last_metered_enrichment_timestamp,Last Metered Enrichment Timestamp,datetime,contactinformation,The timestamp of the most recent enrichment to this object via Breeze Intelligence
+hs_last_sales_activity_date,last sales activity date old,datetime,contactinformation,The date of the last sales activity with the contact. This property is set automatically by HubSpot. Note: This field is only updated for contacts with an owner.
+hs_last_sales_activity_timestamp,Last Engagement Date,datetime,contact_activity,"The last time a contact engaged with your site or a form, document, meetings link, or tracked email. This doesn't include marketing emails or emails to multiple contacts."
+hs_last_sales_activity_type,Last Engagement Type,enumeration,contactinformation,The type of the last engagement a contact performed. This doesn't include marketing emails or emails to multiple contacts.
+hs_last_sms_send_date,Last Sms Send Date,datetime,smsinformation,This stores the date of the last SMS sent
+hs_last_sms_send_name,Last SMS Send Name,string,smsinformation,Name of the last SMS sent to the contact
+hs_lastmodifieddate,Object last modified date/time,datetime,contactinformation,"Most recent timestamp of any property update for this contact. This includes HubSpot internal properties, which can be visible or hidden. This property is updated automatically."
+hs_latest_disqualified_lead_date,Latest Disqualified Lead Date,datetime,contactinformation,The most recent time at which an associated lead currently in a disqualified stage was moved to that stage
+hs_latest_meeting_activity,Latest meeting activity,datetime,contactinformation,"The date of the most recent meeting (past or upcoming) logged for, scheduled with, or booked by this contact."
+hs_latest_open_lead_date,Latest Open Lead Date,datetime,contactinformation,The most recent time an associated open lead was moved to a NEW or IN_PROGRESS state
+hs_latest_qualified_lead_date,Latest Qualified Lead Date,datetime,contactinformation,The most recent time at which an associated lead currently in a qualified stage was moved to that stage
+hs_latest_sequence_ended_date,Last sequence ended date,datetime,contactinformation,The last sequence ended date.
+hs_latest_sequence_enrolled,Last sequence enrolled,number,contactinformation,The last sequence enrolled.
+hs_latest_sequence_enrolled_date,Last sequence enrolled date,datetime,contactinformation,The last sequence enrolled date.
+hs_latest_sequence_finished_date,Last sequence finished date,datetime,contactinformation,The last sequence finished date.
+hs_latest_sequence_unenrolled_date,Last sequence unenrolled date,datetime,contactinformation,The last sequence unenrolled date.
+hs_latest_source,Latest Traffic Source,enumeration,analyticsinformation,The source of the latest session for a contact
+hs_latest_source_data_1,Latest Traffic Source Drill-Down 1,string,analyticsinformation,Additional information about the latest source for the last session the contact used to find your website. Set automatically.
+hs_latest_source_data_2,Latest Traffic Source Drill-Down 2,string,analyticsinformation,Additional information about the source for the last session the contact used to find your website. Set automatically.
+hs_latest_source_timestamp,Latest Traffic Source Date,datetime,analyticsinformation,The time of the latest session for a contact
+hs_latest_subscription_create_date,Latest subscription create date,datetime,contactinformation,The create date of the latest subscription by the contact.
+hs_lead_status,Lead Status,enumeration,sales_properties,"The contact's sales, prospecting or outreach status"
+hs_legal_basis,Legal basis for processing contact's data,enumeration,emailinformation,Legal basis for processing contact's data; 'Not applicable' will exempt the contact from GDPR protections
+hs_lifecyclestage_customer_date,Became a Customer Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Customer. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_evangelist_date,Became an Evangelist Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Evangelist. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_lead_date,Became a Lead Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_marketingqualifiedlead_date,Became a Marketing Qualified Lead Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to MQL. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_opportunity_date,Became an Opportunity Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_other_date,Became an Other Lifecycle Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Other. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_salesqualifiedlead_date,Became a Sales Qualified Lead Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to SQL. This is automatically set by HubSpot for each contact.
+hs_lifecyclestage_subscriber_date,Became a Subscriber Date,datetime,contactinformation,The date when a contact's lifecycle stage changed to Subscriber. This is automatically set by HubSpot for each contact.
+hs_linkedin_ad_clicked,Clicked LinkedIn Ad,enumeration,conversioninformation,
+hs_linkedin_url,LinkedIn URL,string,socialmediainformation,The URL of the contact's LinkedIn page.
+hs_linkedinid,Linkedin ID,string,socialmediainformation,A contact's linkedin id
+hs_live_enrichment_deadline,Live enrichment deadline,datetime,contactinformation,Deadline for freshly sourced enrichment data to be applied and cause a credit metering
+hs_marketable_reason_id,Marketing contact status source name,string,contactinformation,The ID of the activity that set the contact as a marketing contact
+hs_marketable_reason_type,Marketing contact status source type,enumeration,contactinformation,The type of the activity that set the contact as a marketing contact
+hs_marketable_status,Marketing contact status,enumeration,contactinformation,The marketing status of a contact
+hs_marketable_until_renewal,Marketing contact until next update,enumeration,contactinformation,Specifies if this contact will be set as non-marketing on renewal
+hs_membership_has_accessed_private_content,Member has accessed private content,number,contactscripted,"1 if a member has accessed any private content, 0 or null if not"
+hs_membership_last_private_content_access_date,Membership last private content access date,datetime,contactinformation,The last date a contact accessed private content
+hs_merged_object_ids,Merged Contact IDs,enumeration,contactinformation,The list of Contact record IDs that have been merged into this Contact. This value is set automatically by HubSpot.
+hs_messaging_engagement_score,messaging_engagement_score,number,emailinformation,
+hs_mobile_sdk_push_tokens,Mobile Sdk Push Tokens,string,contactinformation,This property is used to capture the push notification token for use on the LiveChat mobile sdk. We intend to use this property to store a list of push tokens (as they refresh) on the CONTACT object.
+hs_notes_last_activity,Last Activity,object_coordinates,contactinformation,The coordinates of the last activity for a contact. This is set automatically by HubSpot based on user actions in the contact record.
+hs_notes_next_activity,Next Activity,object_coordinates,contactinformation,The coordinates of the next upcoming activity for a contact. This is set automatically by HubSpot based on user actions in the contact record.
+hs_notes_next_activity_type,Next Activity Type,enumeration,contactinformation,The type of the next upcoming activity for a contact. This is set automatically by HubSpot based on user actions in the contact record.
+hs_object_id,Record ID,number,contactinformation,The unique ID for this record. This value is set automatically by HubSpot.
+hs_object_source,Record creation source,string,contactinformation,Raw internal PropertySource present in the RequestMeta when this record was created.
+hs_object_source_detail_1,Record source detail 1,string,contactinformation,First level of detail on how this record was created.
+hs_object_source_detail_2,Record source detail 2,string,contactinformation,Second level of detail on how this record was created.
+hs_object_source_detail_3,Record source detail 3,string,contactinformation,Third level of detail on how this record was created.
+hs_object_source_id,Record creation source ID,string,contactinformation,Raw internal sourceId present in the RequestMeta when this record was created.
+hs_object_source_label,Record source,enumeration,contactinformation,How this record was created.
+hs_object_source_user_id,Record creation source user ID,number,contactinformation,Raw internal userId present in the RequestMeta when this record was created.
+hs_owning_teams,Owning Teams,enumeration,contactinformation,The teams that are attributed to this record.
+hs_persona,Persona,enumeration,contactinformation,A contact's persona
+hs_pinned_engagement_id,Pinned engagement ID,number,contactinformation,The object ID of the current pinned engagement. This will only be shown if there is already an association to the engagement.
+hs_pipeline,Pipeline,enumeration,contactinformation,The pipeline with which this contact is currently associated
+hs_predictivecontactscore,Predictive Lead Score,number,contact_activity,A score calculated by HubSpot that represents a contact's likelihood to become a customer
+hs_predictivecontactscore_v2,Likelihood to close,number,contact_activity,The probability that a contact will become a customer within the next 90 days. This score is based on standard contact properties and behavior.
+hs_predictivecontactscorebucket,Lead Rating,enumeration,contact_activity,The rating of this contact based on their predictive lead score
+hs_predictivescoringtier,Contact priority,enumeration,contact_activity,A ranking system of contacts evenly assigned into four tiers. Contacts in tier one are more likely to become customers than contacts in tier four.
+hs_prospecting_agent_actively_enrolled_count,Prospecting Agent Actively Enrolled Count,number,contactinformation,The number of active prospecting agent enrollments this contact has. This should be either 0 or 1
+hs_quarantined_emails,Quarantined Emails,string,emailinformation,"Lists all emails associated with this contact that have been quarantined, with a source and reason."
+hs_read_only,Read only object,bool,contactinformation,Determines whether a record can be edited by a user.
+hs_recent_closed_order_date,Recent Closed Order Date,datetime,order_information,Date last order was closed. Set automatically.
+hs_registered_member,Registered member,number,contactscripted,Whether or not a contact is registered
+hs_registration_method,Registration Method,string,contactinformation,The method used for registration
+hs_returning_to_office_detected_date,Returning to office detected date,date,emailinformation,Date detected from email that contact will return to the office
+hs_role,Employment Role,enumeration,contactinformation,Job role
+hs_sa_first_engagement_date,Date of first engagement,datetime,contactinformation,The date the current contact owner first engaged with the contact.
+hs_sa_first_engagement_descr,Description of first engagement,enumeration,contactinformation,A description of the current contact owner's first engagement with the contact.
+hs_sa_first_engagement_object_type,Type of first engagement,enumeration,contactinformation,The object type of the current contact owner's first engagement with the contact.
+hs_sales_email_last_clicked,Recent Sales Email Clicked Date,datetime,contact_activity,The last time a tracked sales email was clicked by this user
+hs_sales_email_last_opened,Recent Sales Email Opened Date,datetime,contact_activity,The last time a tracked sales email was opened by this contact. This property does not update for emails that were sent to more than one contact.
+hs_sales_email_last_replied,Recent Sales Email Replied Date,datetime,contact_activity,The last time a tracked sales email to this contact was replied to. This is set automatically by HubSpot.
+hs_searchable_calculated_international_mobile_number,Calculated Mobile Number with country code,phone_number,contactinformation,Mobile number with country code
+hs_searchable_calculated_international_phone_number,Calculated Phone Number with country code,phone_number,contactinformation,Phone number with country code
+hs_searchable_calculated_mobile_number,Calculated Mobile Number without country code,phone_number,contactinformation,Mobile number without country code
+hs_searchable_calculated_phone_number,Calculated Phone Number without country code,phone_number,contactinformation,Phone number without country code
+hs_seniority,Employment Seniority,enumeration,contactinformation,Job Seniority
+hs_sequences_actively_enrolled_count,Number of sequences actively enrolled,number,contactinformation,The number of sequences actively enrolled.
+hs_sequences_enrolled_count,Number of sequences enrolled,number,contactinformation,The number of sequences enrolled.
+hs_sequences_is_enrolled,Currently in Sequence,bool,contact_activity,A yes/no field that indicates whether the contact is currently in a Sequence.
+hs_shared_team_ids,Shared teams,enumeration,contactinformation,Additional teams whose users can access the Contact based on their permissions. This can be set manually or through Workflows or APIs.
+hs_shared_user_ids,Shared users,enumeration,contactinformation,Additional users that can access the Contact based on their permissions. This can be set manually or through Workflows and APIs.
+hs_social_facebook_clicks,Facebook Clicks,number,socialmediainformation,The number clicks on links shared on Facebook
+hs_social_google_plus_clicks,Google Plus Clicks,number,socialmediainformation,The number clicks on links shared on Google Plus
+hs_social_last_engagement,Most Recent Social Click,datetime,socialmediainformation,The date of the most recent click on a published social message. This is set automatically by HubSpot for each contact.
+hs_social_linkedin_clicks,LinkedIn Clicks,number,socialmediainformation,The number clicks on links shared on LinkedIn
+hs_social_num_broadcast_clicks,Broadcast Clicks,number,socialmediainformation,The number of clicks on published social messages. This is set automatically by HubSpot for each contact.
+hs_social_twitter_clicks,Twitter Clicks,number,socialmediainformation,The number of times a contact clicked on links you shared on Twitter through HubSpot. This is set automatically by HubSpot and can be used for segmentation.
+hs_source_object_id,Source Object ID,number,contactinformation,The ID of the object from which the data was migrated. This is set automatically during portal data migration.
+hs_source_portal_id,Source Portal ID,number,contactinformation,The ID of the portal from which the data was migrated. This is set automatically during portal data migration.
+hs_state_code,State/Region Code,string,contactinformation,The contact's state or region code.
+hs_sub_role,Employment Sub Role,enumeration,contactinformation,Job sub role
+hs_testpurge,testpurge,string,contactinformation,testing purge
+hs_testrollback,testrollback,string,contactinformation,testing rollback
+hs_time_between_contact_creation_and_deal_close,Time between contact creation and deal close,number,contactinformation,
+hs_time_between_contact_creation_and_deal_creation,Time between contact creation and deal creation,number,contactinformation,
+hs_time_in_customer,Time in 'Cliente (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_evangelist,Time in 'Evangelizador (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_lead,Time in 'Lead (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_marketingqualifiedlead,Time in 'Marketing Qualified Lead (Lifecycle Stage Pipeline)',number,contact_activity,"The total time in seconds spent by the contact in the 'Marketing Qualified Lead' stage, 'Lifecycle Stage Pipeline' pipeline"
+hs_time_in_opportunity,Time in 'Oportunidad (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_other,Time in 'Otra (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_salesqualifiedlead,Time in 'Lead calificado por ventas (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_in_subscriber,Time in 'Suscriptor (Pipeline de etapa del ciclo de vida)',number,contact_activity,"The total time in seconds spent by the contact in the 'Suscriptor' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_time_to_first_engagement,Lead response time,number,contactinformation,"The time it took the current owner to perform a qualifying action on the contact. Qualifying actions include sending an email, calling, using chat, recording a meeting outcome, or marking a task as in progress or completed."
+hs_time_to_move_from_lead_to_customer,Time to move from lead to customer,number,contactinformation, How long it takes for a contact to move from the HubSpot lead stage to the HubSpot customer stage.
+hs_time_to_move_from_marketingqualifiedlead_to_customer,Time to move from marketing qualified lead to customer,number,contactinformation, How long it takes for a contact to move from the HubSpot marketing qualified lead stage to the HubSpot customer stage.
+hs_time_to_move_from_opportunity_to_customer,Time to move from opportunity to customer,number,contactinformation, How long it takes for a contact to move from the HubSpot opportunity stage to the HubSpot customer stage.
+hs_time_to_move_from_salesqualifiedlead_to_customer,Time to move from sales qualified lead to customer,number,contactinformation, How long it takes for a contact to move from the HubSpot sales qualified lead stage to the HubSpot customer stage.
+hs_time_to_move_from_subscriber_to_customer,Time to move from subscriber to customer,number,contactinformation, How long it takes for a contact to move from the HubSpot subscriber stage to the HubSpot customer stage.
+hs_timezone,Time Zone,enumeration,contactinformation,The contact’s time zone. This can be set automatically by HubSpot based on other contact properties. It can also be set manually for each contact.
+hs_twitterid,Twitter ID,string,socialmediainformation,A contact's twitter id
+hs_unique_creation_key,Unique creation key,string,contactinformation,Unique property used for idempotent creates
+hs_updated_by_user_id,Updated by user ID,number,contactinformation,The user who last updated this record. This value is set automatically by HubSpot.
+hs_user_ids_of_all_notification_followers,User IDs of all notification followers,enumeration,contactinformation,The user IDs of all users that have clicked follow within the object to opt-in to getting follow notifications
+hs_user_ids_of_all_notification_unfollowers,User IDs of all notification unfollowers,enumeration,contactinformation,The user IDs of all object owners that have clicked unfollow within the object to opt-out of getting follow notifications
+hs_user_ids_of_all_owners,User IDs of all owners,enumeration,contactinformation,The user IDs of all owners of this record.
+hs_v2_cumulative_time_in_customer,"Cumulative time in ""Cliente (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_cumulative_time_in_evangelist,"Cumulative time in ""Evangelizador (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_cumulative_time_in_lead,"Cumulative time in ""Lead (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_cumulative_time_in_opportunity,"Cumulative time in ""Oportunidad (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_cumulative_time_in_other,"Cumulative time in ""Otra (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_cumulative_time_in_salesqualifiedlead,"Cumulative time in ""Lead calificado por ventas (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The cumulative time in seconds spent by the contact in the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_customer,"Date entered ""Cliente (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_evangelist,"Date entered ""Evangelizador (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_lead,"Date entered ""Lead (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_opportunity,"Date entered ""Oportunidad (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_other,"Date entered ""Otra (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_entered_salesqualifiedlead,"Date entered ""Lead calificado por ventas (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact entered the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_customer,"Date exited ""Cliente (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_evangelist,"Date exited ""Evangelizador (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_lead,"Date exited ""Lead (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_opportunity,"Date exited ""Oportunidad (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_other,"Date exited ""Otra (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_date_exited_salesqualifiedlead,"Date exited ""Lead calificado por ventas (Pipeline de etapa del ciclo de vida)""",datetime,contactlcs,"The date and time when the contact exited the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline"
+hs_v2_latest_time_in_customer,"Latest time in ""Cliente (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Cliente' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_v2_latest_time_in_evangelist,"Latest time in ""Evangelizador (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Evangelizador' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_v2_latest_time_in_lead,"Latest time in ""Lead (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Lead' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_v2_latest_time_in_opportunity,"Latest time in ""Oportunidad (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Oportunidad' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_v2_latest_time_in_other,"Latest time in ""Otra (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Otra' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_v2_latest_time_in_salesqualifiedlead,"Latest time in ""Lead calificado por ventas (Pipeline de etapa del ciclo de vida)""",number,contactlcs,"The total time in seconds spent by the contact in the 'Lead calificado por ventas' stage, 'Pipeline de etapa del ciclo de vida' pipeline since it last entered this stage"
+hs_was_imported,Performed in an import,bool,contactinformation,Object is part of an import
+hs_whatsapp_phone_number,WhatsApp Phone Number,string,contactinformation,The phone number associated with the contact’s WhatsApp account.
+hubspot_owner_assigneddate,Owner assigned date,datetime,sales_properties,The most recent timestamp of when an owner was assigned to this record. This value is set automatically by HubSpot.
+hubspot_owner_id,Contact owner,enumeration,sales_properties,"The owner of a contact. This can be any HubSpot user or Salesforce integration user, and can be set manually or via Workflows."
+hubspot_team_id,HubSpot Team,enumeration,sales_properties,The team of the owner of a contact.
+hubspotscore,HubSpot Score,number,sales_properties,The number that shows qualification of contacts to sales readiness. It can be set in HubSpot's Lead Scoring app.
+industry,Industry,string,contactinformation,The Industry a contact is in
+institucion_en_la_que_labora,Institución en la que labora,enumeration,contactinformation,
+ip_city,IP City,string,conversioninformation,The city reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+ip_country,IP Country,string,conversioninformation,The country reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+ip_country_code,IP Country Code,string,conversioninformation,The country code reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+ip_latlon,IP Latitude & Longitude,string,conversioninformation,
+ip_state,IP State/Region,string,conversioninformation,The state or region reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+ip_state_code,IP State Code/Region Code,string,conversioninformation,The state code or region code reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+ip_zipcode,IP Zipcode,string,conversioninformation,The zipcode reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting.
+job_function,Job function,string,facebook_ads_properties,Contact's job function. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+jobtitle,Job Title,string,contactinformation,A contact's job title
+kloutscoregeneral,Klout Score,number,socialmediainformation,"A contact's Klout score, a measure of Internet influence"
+last_aircall_call_outcome,Last Aircall call outcome,enumeration,aircall,Call outcome of last Aircall call activity
+last_used_aircall_phone_number,Last used Aircall phone number,string,aircall,Aircall phone number on last Aircall call activity
+last_used_aircall_tags,Last used Aircall tags,string,aircall,Aircall tags on last Aircall call activity
+lastmodifieddate,Last Modified Date,datetime,contactinformation,The date any property on this contact was modified
+lastname,Last Name,string,contactinformation,A contact's last name
+lifecyclestage,Lifecycle Stage,enumeration,contactinformation,"The qualification of contacts to sales readiness. It can be set through imports, forms, workflows, and manually on a per contact basis."
+linkedinbio,LinkedIn Bio,string,socialmediainformation,A contact's LinkedIn bio
+linkedinconnections,LinkedIn Connections,number,socialmediainformation,How many LinkedIn connections they have
+marca_vehiculo,Marca Vehículo,string,deal_information,
+marital_status,Marital Status,string,facebook_ads_properties,Contact's marital status. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+message,Message,string,contact_activity,A default property to be used for any message or comments a contact may want to leave on a form.
+military_status,Military status,string,facebook_ads_properties,Contact's military status. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+mobilephone,Mobile Phone Number,string,contactinformation,A contact's mobile phone number
+modelo_del_vehiculo,Modelo del vehículo,string,deal_information,
+monto_a_donar,Monto a donar,enumeration,deal_information,Monto a donar campaña obras del espiritu santo octubre 2024.
+monto_a_invertir_en_colones__,Monto a invertir en colones ¢,number,contactinformation,
+monto_del_ahorro_semanal_en_colones__,Monto del ahorro semanal en colones ¢,number,contactinformation,
+no__de_cedula,No. de cédula,number,contactinformation,
+no_de_personas_dependientes,No de personas dependientes,number,contactinformation,
+nombramiento,Nombramiento,enumeration,contactinformation,
+nombre_de_quien_refiere,Nombre de quien refiere,string,contactinformation,Nombre de quien refiere a afiliarse
+nombre_del_conyuge,Nombre del cónyuge,string,contactinformation,
+nombre_del_referido,Nombre del referido,string,contactinformation,Nombre del referido a asociarse
+nombre_y_apellidos,Nombre y apellidos,string,contactinformation,
+nombre_y_apellidos__beneficiario_1_apoyo_funerario_,Nombre y apellidos (Beneficiario 1 Apoyo Funerario),string,deal_information,
+nombre_y_apellidos__beneficiario_2_,Nombre y apellidos (Beneficiario 2),string,contactinformation,
+nombre_y_apellidos__beneficiario_2_apoyo_funerario_,Nombre y apellidos (Beneficiario 2 Apoyo Funerario),string,contactinformation,
+nombre_y_apellidos__beneficiario_3_,Nombre y apellidos (Beneficiario 3),string,contactinformation,
+nombre_y_apellidos__beneficiario_3_apoyo_funerario_,Nombre y apellidos (Beneficiario 3 Apoyo Funerario),string,contactinformation,
+nombre_y_apellidos__beneficiario_4_apoyo_funerario_,Nombre y apellidos (Beneficiario 4 Apoyo Funerario),string,deal_information,
+nombre_y_apellidos__beneficiario_5_apoyo_funerario_,Nombre y apellidos (Beneficiario 5 Apoyo Funerario),string,contactinformation,
+nombre_y_apellidos__beneficiario_6_apoyo_funerario_,Nombre y apellidos (Beneficiario 6 Apoyo Funerario),string,contactinformation,
+nombre_y_apellidos__beneficiario_7_apoyo_funerario_,Nombre y apellidos (Beneficiario 7 Apoyo Funerario),string,deal_information,
+nombre_y_apellidos_del_dueno_registral,Nombre y apellidos del dueño registral,string,contactinformation,
+nota_de_solicitud_de_pago,Nota de solicitud de pago,string,contact_activity,
+notes_last_contacted,Last Contacted,datetime,contact_activity,"The last time a call, chat conversation, LinkedIn message, postal mail, meeting, sales email, SMS, or WhatsApp message was logged for a contact. This is set automatically by HubSpot based on user actions in the contact record."
+notes_last_updated,Last Activity Date,datetime,contact_activity,"The last time a call, chat conversation, LinkedIn message, postal mail, meeting, note, sales email, SMS, or WhatsApp message was logged for a contact. This is set automatically by HubSpot based on user actions in the contact record."
+notes_next_activity_date,Next Activity Date,datetime,contact_activity,The date of the next upcoming activity for a contact. This is set automatically by HubSpot based on user actions in the contact record.
+num_associated_deals,Number of Associated Deals,number,deal_information,Count of deals associated with this contact. Set automatically by HubSpot.
+num_contacted_notes,Number of times contacted,number,contact_activity,"The number of times a call, chat conversation, LinkedIn message, postal mail, meeting, sales email, SMS, or WhatsApp message was logged for a contact record. This is set automatically by HubSpot based on user actions in the contact record."
+num_conversion_events,Number of Form Submissions,number,conversioninformation,The number of forms this contact has submitted
+num_notes,Number of Sales Activities,number,contact_activity,"The number of times a call, chat conversation, LinkedIn message, postal mail, meeting, note, sales email, SMS, task, or WhatsApp message was logged for a contact record. This is set automatically by HubSpot based on user actions in the contact record."
+num_unique_conversion_events,Number of Unique Forms Submitted,number,conversioninformation,The number of different forms this contact has submitted
+numemployees,Number of Employees,enumeration,contactinformation,The number of company employees
+numero_asociado,Numero Empleado,number,contactinformation,Numero asociado
+numero_de_cedula__beneficiario_1_,Numero de cédula (Beneficiario 1),string,contactinformation,
+numero_de_cedula__beneficiario_2_,Numero de cédula (Beneficiario 2),string,contactinformation,
+numero_de_cedula__beneficiario_3_,Numero de cédula (Beneficiario 3),string,contactinformation,
+numero_de_cuenta_bancaria,Número de cuenta bancaria,number,contactinformation,
+numero_de_empleado_del_referido,Número de empleado del referido,number,contactinformation,Número de empleado del referido
+oficina,Oficina,string,contactinformation,
+otro_monto_a_donar,Otro monto a donar,number,deal_information,"Otro monto a donar, campaña obras del espiritu santo, octubre 24"
+owneremail,HubSpot Owner Email (legacy),string,sales_properties,A legacy property used to identify the email address of the owner of the contact. This property is no longer in use.
+ownername,HubSpot Owner Name (legacy),string,sales_properties,A legacy property used to identify the name of the owner of the contact. This property is no longer in use.
+pantallazo_deposito_sinpe_movil,Pantallazo depósito SINPE móvil,string,deal_information,
+parentesco,Parentesco,string,contactinformation,
+parentesco__beneficiario_1_,Parentesco (Beneficiario 2),string,contactinformation,
+parentesco__beneficiario_3_,Parentesco (Beneficiario 3),string,contactinformation,
+periodiciadad_de_la_deduccion,Periodiciadad de la deducción,enumeration,contactinformation,
+permisos_municipales_para_la_construccion,Permisos municipales para la construcción,string,deal_information,
+phone,Phone Number,string,contactinformation,A contact's primary phone number
+photo,Photo,string,socialmediainformation,Social Media photo
+placa_del_vehiculo,Placa del vehículo,string,deal_information,
+plan_seguro_apoyo_funerario,Plan Seguro Apoyo Funerario,enumeration,deal_information,
+plan_seguro_su_vida,Plan Seguro Su Vida,enumeration,deal_information,
+plano_catastrado,Plano Catastrado,string,deal_information,
+planos_de_construccion,Planos de construcción,string,contactinformation,
+plazo_del_ahorro_en_meses,Plazo del ahorro en meses,number,contactinformation,
+plazo_del_tu_certificado,Plazo del certificado de inversión,enumeration,contactinformation,
+porcentaje__beneficiario_1_,Porcentaje (Beneficiario 1),number,contactinformation,
+porcentaje__beneficiario_2_,Porcentaje (Beneficiario 2),number,contactinformation,
+porcentaje__beneficiario_3_,Porcentaje (Beneficiario 3),number,contactinformation,
+presupuesto_de_construccion,Presupuesto de construcción,string,deal_information,
+provincia,Provincia,enumeration,contactinformation,
+puesto,Puesto,string,contactinformation,
+que_coberturas_espera_que_contemple_su_seguro_,¿Qué coberturas espera que contemple su seguro?,enumeration,deal_information,
+quien_sera_el_titular_de_la_opcion_de_compra_venta_del_inmueble_,¿Quién será el titular de la opción de compra-venta del inmueble?,enumeration,deal_information,
+recent_conversion_date,Recent Conversion Date,datetime,conversioninformation,The date this contact last submitted a form
+recent_conversion_event_name,Recent Conversion,string,conversioninformation,The last form this contact submitted
+recent_deal_amount,Recent Deal Amount,number,deal_information,Amount of last closed won deal associated with a contact. Set automatically.
+recent_deal_close_date,Recent Deal Close Date,datetime,deal_information,Date last deal associated with contact was closed-won. Set automatically.
+relationship_status,Relationship Status,string,facebook_ads_properties,Contact's relationship status. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+reporte_ante_autoridades_competentes,Reporte ante autoridades competentes,string,contact_activity,
+reporte_crediticio_sugef,Reporte crediticio SUGEF,string,deal_information,
+salario_bruto_semanal_o_quincenal,Salario Bruto semanal o quincenal,number,contactinformation,
+salario_neto_semanal_o_quincenal,Salario Neto semanal o quincenal,number,contactinformation,
+salutation,Salutation,string,contactinformation,The title used to address a contact
+school,School,string,facebook_ads_properties,Contact's school. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+segundoapellido,Segundo Apellido,string,contactinformation,
+seleccione_el_plazo_para_realizar_el_rebajo,Seleccione el plazo para realizar el rebajo,enumeration,deal_information,
+seleccione_el_rebajo_de_planilla_que_prefiera,Seleccione el rebajo de planilla que prefiera,enumeration,deal_information,
+seniority,Seniority,string,facebook_ads_properties,Contact's seniority. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+servicio_o_producto,Servicio o producto,enumeration,contactinformation,
+start_date,Start date,string,facebook_ads_properties,Contact's start date. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+state,State/Region,string,contactinformation,"The contact's state of residence. This might be set via import, form, or integration."
+su_auto_posee_extras_que_desea_asegurar_,¿Su auto posee extras que desea asegurar?,string,deal_information,
+surveymonkeyeventlastupdated,SurveyMonkey Event Last Updated,number,contactinformation,"This field is meaningless on its own, and is solely used for triggering dynamic list updates when SurveyMonkey information is updated"
+telefono_de_habitacion,Teléfono de habitación,number,contactinformation,
+telefono_de_oficina,Teléfono de oficina,number,contactinformation,
+telefono_del_referido,Teléfono del referido,number,contactinformation,
+telefono_habitacion,Teléfono habitación,string,contactinformation,
+telefono_oficina,Teléfono Oficina,string,contactinformation,
+telfono,Teléfono,string,lead_ads,Lead Ad Properties
+tipo_de_ayuda_del_bienestar_social,Tipo de Ayuda del Bienestar Social,enumeration,contactinformation,
+tipo_de_ayuda_por_fallciemiento,Tipo de ayuda por fallciemiento,enumeration,contactinformation,
+tipo_de_contacto,Tipo de contacto,enumeration,contactinformation,
+tipo_de_cuenta_bancaria,Tipo de cuenta bancaria,enumeration,contactinformation,
+tipo_de_documento,Tipo de documento,enumeration,contactinformation,
+total_revenue,Total Revenue,number,deal_information,Sum of all closed-won deal revenue associated with the contact. Set automatically.
+transmision_del_vehiculo,Transmisión del vehículo,enumeration,deal_information,
+twitterbio,Twitter Bio,string,socialmediainformation,The contact's Twitter bio. This is set by HubSpot using the contact's email address.
+twitterhandle,Twitter Username,string,contactinformation,The contact's Twitter handle.
+twitterprofilephoto,Twitter Profile Photo,string,socialmediainformation,The contact's Twitter profile photo. This is set by HubSpot using the contact's email address.
+ultima_colilla_de_pago,Última colilla de pago,string,contactinformation,
+uso_del_vehiculo,Uso del vehículo,enumeration,deal_information,
+valor_actual_del_mercado,Valor actual del mercado,number,deal_information,
+webinareventlastupdated,Webinar Event Last Updated,number,contactinformation,"This field is meaningless on its own, and is solely used for triggering dynamic list updates when webinar information is updated"
+website,Website URL,string,contactinformation,Associated company website.
+work_email,Work email,string,contactinformation,Contact's work email. Required for the Facebook Ads Integration. Automatically synced from the Lead Ads tool.
+zip,Postal Code,string,contactinformation,"The contact's zip code. This might be set via import, form, or integration."

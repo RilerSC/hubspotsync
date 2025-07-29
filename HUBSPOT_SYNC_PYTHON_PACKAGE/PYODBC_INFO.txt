@@ -1,0 +1,49 @@
+============================================
+NOTA IMPORTANTE SOBRE PYODBC
+============================================
+
+📋 ESTADO ACTUAL:
+✅ Python 3.13 - Funcionando
+✅ requests - Funcionando  
+✅ dotenv - Funcionando
+✅ tabulate - Funcionando
+✅ urllib3 - Funcionando
+✅ Módulos HubSpot - Funcionando
+❌ pyodbc - No instalado (requiere Visual C++ Build Tools)
+
+🎯 IMPACTO EN EL SISTEMA:
+• El sistema PUEDE ejecutarse sin pyodbc
+• Extraerá datos de HubSpot correctamente
+• Mostrará resúmenes y estadísticas
+• Solo fallará al intentar conectar a SQL Server
+
+🔧 OPCIONES PARA PYODBC:
+
+OPCIÓN 1: INSTALAR VISUAL C++ BUILD TOOLS
+• Descargar de: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+• Instalar "C++ build tools" workload
+• Después ejecutar: pip install pyodbc
+
+OPCIÓN 2: USAR VERSIÓN PRECOMPILADA
+• Buscar wheel precompilado en: https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyodbc
+• Descargar archivo .whl apropiado para Python 3.13
+• Instalar con: pip install archivo.whl
+
+OPCIÓN 3: CONTINUAR SIN PYODBC (RECOMENDADO PARA TESTING)
+• El sistema funcionará parcialmente
+• Útil para probar conectividad HubSpot
+• Útil para validar datos extraídos
+• Se puede instalar pyodbc después
+
+🚀 RECOMENDACIÓN INMEDIATA:
+1. Ejecutar test_hubspot_modules.bat
+2. Configurar archivo .env con credenciales HubSpot
+3. Ejecutar run_sync.bat (funcionará hasta conexión SQL)
+4. Instalar pyodbc después si se necesita SQL Server
+
+📝 MENSAJE DEL SISTEMA:
+"Si pyodbc no funciona, el sync funcionará parcialmente (sin conexión a SQL Server)"
+
+✅ CONCLUSIÓN:
+El sistema está 90% listo para usar.
+pyodbc es solo necesario para escribir a SQL Server.
