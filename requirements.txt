@@ -1,0 +1,12 @@
+# HubSpot Sync - Dependencias del proyecto
+# Instalar con: pip install -r requirements.txt
+
+# Dependencias principales
+python-dotenv>=1.0.0     # Manejo de variables de entorno
+pyodbc>=5.0.0           # Conector ODBC para SQL Server
+requests>=2.31.0        # Cliente HTTP para HubSpot API
+
+# Dependencias opcionales para desarrollo
+# pandas>=2.0.0         # Análisis de datos (no requerido - sistema optimizado sin pandas)
+# jupyter>=1.0.0        # Notebooks para análisis
+# matplotlib>=3.7.0     # Gráficos y visualizaciones
