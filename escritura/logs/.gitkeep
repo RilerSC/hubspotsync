@@ -1,0 +1,2 @@
+# Este archivo mantiene el directorio logs/ en el repositorio
+# Los archivos de log reales serán ignorados por .gitignore

@@ -52,3 +52,13 @@ settings.local.*
 *.db
 *.sqlite
 *.sqlite3
+
+# Logs del módulo de escritura
+escritura/logs/*.log
+escritura/logs/*.txt
+escritura/logs/*.json
+!escritura/logs/.gitkeep
+
+# Archivos de configuración local específicos del módulo de escritura
+escritura/config.local.yaml
+escritura/.env.local
