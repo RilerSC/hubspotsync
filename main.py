@@ -256,23 +256,25 @@ def verify_environment():
 
 def get_sql_connection():
     """
-    Establece conexión con SQL Server usando pyodbc.
+    Establece conexión con SQL Server usando pyodbc con optimizaciones para grandes volúmenes.
     
     Descripción:
         Crea una conexión ODBC con SQL Server utilizando las credenciales
-        almacenadas en variables de entorno. Usa el driver ODBC 17.
+        almacenadas en variables de entorno. Usa el driver ODBC 17 con
+        configuraciones optimizadas para inserción masiva.
         
     Configuración de Conexión:
         - Driver: ODBC Driver 17 for SQL Server
         - Autenticación: SQL Server (usuario/contraseña)
-        - Timeout: Por defecto del driver
+        - Timeout: 300 segundos para operaciones grandes
+        - Autocommit: Deshabilitado para transacciones manuales
         
     Dependencias:
         - pyodbc: Librería para conexiones ODBC
         - Variables de entorno: SQL_SERVER, SQL_DATABASE, SQL_USER, SQL_PASSWORD
         
     Retorna:
-        pyodbc.Connection: Objeto de conexión activa a SQL Server
+        pyodbc.Connection: Objeto de conexión activa a SQL Server optimizada
         
     Excepciones:
         - pyodbc.Error: En caso de error de conexión o autenticación
@@ -284,14 +286,19 @@ def get_sql_connection():
     user = os.getenv("SQL_USER")
     password = os.getenv("SQL_PASSWORD")
 
-    # Crear cadena de conexión y establecer conexión
-    return pyodbc.connect(
+    # Crear cadena de conexión optimizada para inserción masiva
+    connection = pyodbc.connect(
         f"DRIVER={{ODBC Driver 17 for SQL Server}};"
         f"SERVER={server};"
         f"DATABASE={database};"
         f"UID={user};"
-        f"PWD={password}"
+        f"PWD={password};"
+        f"Connection Timeout=30;"
+        f"Command Timeout=300",  # 5 minutos para operaciones grandes
+        autocommit=False  # Usar transacciones manuales para mejor performance
     )
+    
+    return connection
 
 # ==================== 🗄️ FUNCIONES DE ADMINISTRACIÓN DE BASE DE DATOS ====================
 
@@ -450,8 +457,7 @@ def sync_entities_direct(entities, table_name, properties_list, entity_type="ent
         # Llamar función especializada para inserción de entidades
         insert_entities_data(cursor, table_name, entities_data, columns, entity_type)
 
-        # Confirmar transacción y cerrar conexión
-        conn.commit()
+        # Cerrar conexión (el commit ya se maneja en insert_entities_data)
         cursor.close()
         conn.close()
         print(f"✅ Sincronización directa completa para '{table_name}'.")
@@ -532,11 +538,12 @@ def sync_table_data(table_data, table_name):
 
 def insert_entities_data(cursor, table_name, entities_data, columns, entity_type):
     """
-    Inserta datos de entidades HubSpot con procesamiento específico por tipo.
+    Inserta datos de entidades HubSpot con procesamiento optimizado por lotes grandes.
     
     Descripción:
         Función especializada para insertar datos de entidades (deals, tickets, contacts)
         con lógica específica de transformación según el tipo de entidad.
+        OPTIMIZADA: Usa lotes de 500 registros para máxima eficiencia con grandes volúmenes.
         
     Parámetros:
         cursor (pyodbc.Cursor): Cursor activo de conexión SQL Server
@@ -551,50 +558,100 @@ def insert_entities_data(cursor, table_name, entities_data, columns, entity_type
         
     Flujo de Inserción:
         1. Construcción dinámica de query INSERT con placeholders
-        2. Iteración sobre cada entidad
+        2. Procesamiento por lotes de 500 registros (optimizado para 262 columnas)
         3. Extracción y transformación de valores según tipo
-        4. Ejecución de INSERT individual por entidad
+        4. Ejecución de INSERT por lotes usando executemany() optimizado
+        5. Commits intermedios cada 1000 registros para liberar memoria
         
     Manejo de Valores:
         - None: Se mantiene como NULL en SQL
         - Otros: Se convierten a string para compatibilidad NVARCHAR(MAX)
         
     Performance:
-        Optimizada para lotes de hasta varios miles de registros
+        Optimizada específicamente para 5000+ registros con 262 columnas (1.3M+ valores)
     """
     # Construir query de inserción con placeholders seguros
     placeholders = ", ".join(["?" for _ in columns])
     columns_str = ", ".join([f"[{col}]" for col in columns])
     query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
     
-    # Procesar cada entidad individualmente
-    for props in entities_data:
-        values = []
-        for col in columns:
-            val = props.get(col)
-            
-            # Aplicar transformaciones específicas por tipo de entidad
-            if entity_type == "tickets" and val and "time" in col and str(val).isdigit():
-                try:
-                    # Convertir timestamps de HubSpot (milisegundos) a segundos
-                    val = int(val) / 1000
-                except (ValueError, TypeError):
-                    # Mantener valor original si la conversión falla
-                    pass
-            
-            # Preparar valor para inserción SQL
-            values.append(str(val) if val is not None else None)
+    # Configuración optimizada para grandes volúmenes
+    batch_size = 500  # Aumentado para mejor throughput con muchas columnas
+    commit_interval = 1000  # Commit cada 1000 registros para liberar memoria
+    total_records = len(entities_data)
+    total_batches = (total_records + batch_size - 1) // batch_size
+    records_processed = 0
+    
+    print(f"   📦 Procesando {total_records:,} registros en {total_batches} lotes de {batch_size}")
+    print(f"   📊 Total de valores a insertar: {total_records * len(columns):,}")
+    
+    for i in range(0, total_records, batch_size):
+        batch = entities_data[i:i + batch_size]
+        batch_values = []
         
-        # Ejecutar inserción para esta entidad
-        cursor.execute(query, tuple(values))
+        # Procesar cada entidad en el lote
+        for props in batch:
+            values = []
+            for col in columns:
+                val = props.get(col)
+                
+                # Aplicar transformaciones específicas por tipo de entidad
+                if entity_type == "tickets" and val and "time" in col and str(val).isdigit():
+                    try:
+                        # Convertir timestamps de HubSpot (milisegundos) a segundos
+                        val = int(val) / 1000
+                    except (ValueError, TypeError):
+                        # Mantener valor original si la conversión falla
+                        pass
+                
+                # Preparar valor para inserción SQL
+                values.append(str(val) if val is not None else None)
+            
+            batch_values.append(tuple(values))
+        
+        # Ejecutar inserción del lote completo
+        try:
+            cursor.executemany(query, batch_values)
+            records_processed += len(batch)
+            
+            # Progress tracking detallado
+            batch_num = i // batch_size + 1
+            progress_pct = (records_processed / total_records) * 100
+            print(f"   ✅ Lote {batch_num}/{total_batches}: {len(batch)} registros | "
+                  f"Total: {records_processed:,}/{total_records:,} ({progress_pct:.1f}%)")
+            
+            # Commit intermedio para liberar memoria y locks
+            if records_processed % commit_interval == 0:
+                cursor.connection.commit()
+                print(f"   💾 Commit intermedio en {records_processed:,} registros")
+            
+        except Exception as e:
+            print(f"   ❌ Error en lote {batch_num}: {str(e)}")
+            print(f"   🔄 Intentando inserción individual para el lote...")
+            
+            # Fallback: inserción individual para este lote
+            individual_success = 0
+            for j, values in enumerate(batch_values):
+                try:
+                    cursor.execute(query, values)
+                    individual_success += 1
+                except Exception as individual_error:
+                    print(f"     ⚠️ Error en registro {i + j + 1}: {str(individual_error)[:100]}...")
+            
+            records_processed += individual_success
+            print(f"   ✅ Lote {batch_num} completado individualmente: {individual_success}/{len(batch)} registros")
+    
+    # Commit final
+    cursor.connection.commit()
+    print(f"   🎉 Inserción completada: {records_processed:,} registros procesados exitosamente")
 
 def insert_table_data(cursor, table_name, table_data, columns):
     """
-    Inserta datos estructurados como tabla (owners, pipelines).
+    Inserta datos estructurados como tabla (owners, pipelines) con optimización por lotes.
     
     Descripción:
         Función para insertar datos que ya vienen estructurados como
-        tabla desde las funciones fetch_*_as_table().
+        tabla desde las funciones fetch_*_as_table() usando lotes optimizados.
         
     Parámetros:
         cursor (pyodbc.Cursor): Cursor activo de conexión SQL Server
@@ -605,32 +662,59 @@ def insert_table_data(cursor, table_name, table_data, columns):
     Diferencias con insert_entities_data():
         - No aplica transformaciones específicas por tipo
         - Los datos ya vienen en formato tabla
-        - Inserción más directa y simple
+        - Lotes más pequeños (apropiados para datasets menores)
         
     Flujo de Inserción:
         1. Construcción de query INSERT con placeholders
-        2. Iteración sobre cada fila de datos
+        2. Procesamiento por lotes de 200 registros
         3. Extracción directa de valores según columnas
-        4. Ejecución de INSERT por fila
+        4. Ejecución de INSERT por lotes usando executemany()
         
     Origen de Datos:
         - fetch_owners_as_table()
         - fetch_*_pipelines_as_table()
         
     Performance:
-        Optimizada para datasets pequeños a medianos (< 1000 registros)
+        Optimizada para datasets pequeños a medianos (< 5000 registros)
     """
     # Construir query de inserción con placeholders seguros
     placeholders = ", ".join(["?" for _ in columns])
     columns_str = ", ".join([f"[{col}]" for col in columns])
     query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
     
-    # Procesar cada fila de datos
-    for row in table_data:
-        # Extraer valores en el orden correcto de las columnas
-        values = [str(row.get(col)) if row.get(col) is not None else None for col in columns]
-        # Ejecutar inserción para esta fila
-        cursor.execute(query, tuple(values))
+    # Configuración optimizada para datos tabulares
+    batch_size = 200  # Tamaño apropiado para datos estructurados
+    total_records = len(table_data)
+    total_batches = (total_records + batch_size - 1) // batch_size
+    
+    if total_records <= batch_size:
+        # Dataset pequeño - inserción directa
+        batch_values = []
+        for row in table_data:
+            values = [str(row.get(col)) if row.get(col) is not None else None for col in columns]
+            batch_values.append(tuple(values))
+        
+        cursor.executemany(query, batch_values)
+        print(f"   ✅ {total_records} registros insertados en lote único")
+    else:
+        # Dataset grande - inserción por lotes
+        print(f"   📦 Procesando {total_records} registros en {total_batches} lotes de {batch_size}")
+        
+        for i in range(0, total_records, batch_size):
+            batch = table_data[i:i + batch_size]
+            batch_values = []
+            
+            for row in batch:
+                values = [str(row.get(col)) if row.get(col) is not None else None for col in columns]
+                batch_values.append(tuple(values))
+            
+            cursor.executemany(query, batch_values)
+            batch_num = i // batch_size + 1
+            progress_pct = ((i + len(batch)) / total_records) * 100
+            print(f"   ✅ Lote {batch_num}/{total_batches}: {len(batch)} registros ({progress_pct:.1f}%)")
+        
+        cursor.connection.commit()
+        print(f"   🎉 Inserción completada: {total_records} registros procesados")
 
 def sync_entities_manual(entities, table_name, entity_type):
     """

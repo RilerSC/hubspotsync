@@ -1,0 +1,5 @@
+python-dotenv
+pyodbc
+requests
+hubspot-api-client
+loguru
