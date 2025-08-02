@@ -1,76 +1,65 @@
-# hubspot_client/field_mapper.py
+# hubspot_client/field_mapper_insert.py
 """
-Mapeo de campos entre SQL Server y HubSpot
+Mapeo de campos entre SQL Server y HubSpot para operaciones INSERT
+Basado en MAPEO_INSERT.csv y HB_INSERT.sql
 """
+import csv
+import os
 from typing import Dict, Any, Optional
 from datetime import datetime
 import re
 
 from utils.logger import get_logger
 
-class HubSpotFieldMapper:
-    """Clase para mapear campos de SQL Server a propiedades de HubSpot"""
+class HubSpotInsertFieldMapper:
+    """Clase para mapear campos de SQL Server a propiedades de HubSpot para INSERT"""
     
     def __init__(self):
-        self.logger = get_logger('hubspot_sync.mapper')
+        self.logger = get_logger('hubspot_sync.insert_mapper')
         
-        # Mapeo de campos SQL Server -> HubSpot (BASADO EN MAPEO_COLUMNAS.csv y HB_UPDATE.sql)
-        self.field_mapping = {
-            # Campos básicos de identificación
-            'no__de_cedula': 'no__de_cedula',
-            'numero_asociado': 'numero_asociado',
-            'email': 'email',
-            'email_bncr': 'work_email',  # CAMBIADO: de hs_additional_emails a work_email
+        # Cargar mapeo desde MAPEO_INSERT.csv
+        self.field_mapping = self._load_mapping_from_csv()
+        self.logger.info(f"✅ Mapeo INSERT cargado: {len(self.field_mapping)} campos")
+    
+    def _load_mapping_from_csv(self) -> Dict[str, str]:
+        """
+        Carga el mapeo de campos desde MAPEO_INSERT.csv
+        
+        Returns:
+            Diccionario con mapeo SQL_Field -> HubSpot_Field
+        """
+        mapping = {}
+        csv_path = os.path.join(os.path.dirname(__file__), '..', 'MAPEO_INSERT.csv')
+        
+        try:
+            with open(csv_path, 'r', encoding='utf-8-sig') as file:  # utf-8-sig maneja BOM automáticamente
+                reader = csv.DictReader(file)
+                for row in reader:
+                    # Usar las claves exactas del archivo CSV (sin BOM)
+                    sql_field = row['ColumnaA:SQLServer'].strip()
+                    hubspot_field = row['Columna B: HubSpot'].strip()
+                    exists = row['Columna C: Existe'].strip().lower()
+                    
+                    # Solo incluir campos que existen (columna C = 'si')
+                    if exists == 'si' and sql_field and hubspot_field:
+                        mapping[sql_field] = hubspot_field
+                        
+        except Exception as e:
+            self.logger.error(f"Error cargando MAPEO_INSERT.csv: {e}")
+            # Fallback: mapeo básico mínimo
+            mapping = {
+                'no__de_cedula': 'no__de_cedula',
+                'numero_asociado': 'numero_asociado',
+                'email': 'email',
+                'firstname': 'firstname',
+                'lastname': 'lastname'
+            }
             
-            # Estado del asociado
-            'estado_asociado': 'estado_del_asociado',
-            
-            # Productos financieros - Ahorros
-            'con_ahorros': 'con_ahorro',
-            'tiene_economias': 'con_ahorro_economias',
-            'tiene_ahorro_navideno': 'con_ahorro_navideno',
-            'tiene_plan_fin_de_ano': 'con_plan_fin_de_ano',
-            'tiene_ahorro_fondo_de_inversion': 'con_ahorro_fondo_de_inversion',
-            'tiene_ahorro_plan_vacacional': 'con_ahorro_plan_vacacional',
-            'tiene_ahorro_plan_aguinaldo': 'con_ahorro_plan_aguinaldo',
-            'tiene_ahorro_plan_bono_escolar': 'con_ahorro_plan_bono_escolar',
-            'tiene_ahorro_con_proposito': 'con_ahorro_con_proposito',
-            'tiene_ahorro_plan_futuro': 'con_ahorro_plan_futuro',
-            
-            # Productos financieros - Créditos
-            'con_creditos': 'con_credito',
-            'sobre_capital_social': 'con_cred__capital_social',
-            'adelanto_de_pension': 'con_cred__adelanto_de_pension',
-            'consumo_personal': 'con_cred__consumo_personal',
-            'salud': 'con_cred__salud',
-            'especiales_al_vencimiento': 'con_cred__especial_al_vencimiento',
-            'facilito': 'con_cred__facilito',
-            'refundicion_de_pasivos': 'con_cred__refundicion_de_pasivos',
-            'vivienda_patrimonial': 'con_cred_vivienda_patrimonial',
-            'credito_capitalizable': 'con_cred__capitalizable_3',
-            'tecnologico': 'con_cred__tecnologico',
-            'credifacil': 'con_credifacil',
-            'vivienda_cooperativa': 'con_cred__vivienda_cooperativa',
-            'multiuso': 'con_cred__multiuso',
-            'deuda_unica': 'con_cred__deuda_unica',
-            'vivienda_constructivo': 'con_cred__vivienda_constructivo',
-            'credito_compra_vehiculos': 'con_cred__vehiculo_nuevos',
-            'con_back_to_back': 'con_cred__back_to_back',
-            
-            # Productos financieros - Seguros
-            'tiene_seguros': 'con_seguro',
-            'apoyo_funerario': 'con_seg__apoyo_funerario',
-            'seguro_su_vida': 'con_seg__su_vida',
-            'poliza_colectiva': 'con_poliza_colectiva',
-            'tiene_cesantia': 'con_cesantia',
-            
-            # Encargado
-            'encargado': 'hubspot_owner_id',
-        }
+        return mapping
     
     def map_contact_data(self, sql_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Mapea los datos de SQL Server al formato requerido por HubSpot
+        Mapea los datos de SQL Server al formato requerido por HubSpot para INSERT
         
         Args:
             sql_data: Diccionario con datos de SQL Server
@@ -90,8 +79,32 @@ class HubSpotFieldMapper:
                 if processed_value is not None:
                     hubspot_properties[hubspot_field] = processed_value
         
-        self.logger.debug(f"Campos mapeados: {len(hubspot_properties)} de {len(sql_data)}")
+        # Validar campos críticos
+        if not self._validate_critical_fields(hubspot_properties):
+            self.logger.warning(f"Contacto INSERT con campos críticos faltantes: {sql_data.get('no__de_cedula', 'N/A')}")
+            return {}
+        
+        self.logger.debug(f"Campos mapeados para INSERT: {len(hubspot_properties)} de {len(sql_data)}")
         return hubspot_properties
+    
+    def _validate_critical_fields(self, hubspot_data: Dict[str, Any]) -> bool:
+        """
+        Valida que los campos críticos estén presentes para INSERT
+        
+        Args:
+            hubspot_data: Datos mapeados para HubSpot
+            
+        Returns:
+            True si los campos críticos están presentes
+        """
+        critical_fields = ['no__de_cedula', 'email', 'firstname', 'lastname']
+        
+        for field in critical_fields:
+            if field not in hubspot_data or not hubspot_data[field]:
+                self.logger.warning(f"Campo crítico faltante para INSERT: {field}")
+                return False
+        
+        return True
     
     def _process_field_value(self, field_name: str, value: Any) -> Optional[str]:
         """
@@ -154,22 +167,38 @@ class HubSpotFieldMapper:
         
         # CAMPOS NUMBER (SQL Server campos numéricos)
         number_sql_fields = {
-            'no__de_cedula', 'numero_asociado'
+            'no__de_cedula', 'numero_asociado', 'cantidad_hijos',
+            'salario_bruto_semanal_o_quincenal', 'salario_neto_semanal_o_quincenal'
+        }
+        
+        # CAMPOS DATE
+        date_sql_fields = {
+            'date_of_birth', 'fecha_ingreso'
+        }
+        
+        # CAMPOS PHONE
+        phone_sql_fields = {
+            'hs_whatsapp_phone_number', 'telefono_habitacion', 'telefono_oficina'
         }
         
         # CAMPOS SELECT/ENUM (SQL Server campos con opciones)
         select_sql_fields = {
-            'email_bncr', 'estado_asociado', 'encargado'
+            'estado_asociado', 'marital_status', 'provincia', 'canton', 'distrito',
+            'institucion', 'departamento', 'encargado'
         }
         
         # CAMPOS EMAIL
-        email_sql_fields = {'email'}
+        email_sql_fields = {'email', 'email_bncr'}
         
         # Verificar tipo basado en el campo SQL
         if sql_field in boolean_sql_fields:
             return 'boolean'
         elif sql_field in number_sql_fields:
             return 'number'
+        elif sql_field in date_sql_fields:
+            return 'date'
+        elif sql_field in phone_sql_fields:
+            return 'phone'
         elif sql_field in select_sql_fields:
             return 'select'
         elif sql_field in email_sql_fields:
@@ -195,7 +224,7 @@ class HubSpotFieldMapper:
         else:
             return 'false'
     
-    def _format_number_hubspot(self, value: Any) -> Optional[int]:
+    def _format_number_hubspot(self, value: Any) -> Optional[str]:
         """
         Convierte valores a número para HubSpot
         """
@@ -210,11 +239,11 @@ class HubSpotFieldMapper:
                     return None
                 value = clean_value
             
-            # Convertir a número
+            # Convertir a número y retornar como string
             if '.' in str(value):
-                return float(value)
+                return str(float(value))
             else:
-                return int(float(value))
+                return str(int(float(value)))
         except (ValueError, TypeError):
             self.logger.warning(f"No se pudo convertir a número: {value}")
             return None
@@ -333,21 +362,6 @@ class HubSpotFieldMapper:
         # Para otros campos SELECT, retornar el valor tal como viene
         return str_value
     
-    def _clean_cedula(self, cedula: str) -> Optional[str]:
-        """Limpia y valida número de cédula"""
-        if not cedula:
-            return None
-        
-        # Remover espacios, guiones y otros caracteres no numéricos
-        clean_cedula = re.sub(r'[^0-9]', '', cedula)
-        
-        # Validar longitud (cédulas costarricenses suelen tener 9 dígitos)
-        if len(clean_cedula) >= 8 and len(clean_cedula) <= 12:
-            return clean_cedula
-        
-        self.logger.warning(f"Cédula con formato inválido: {cedula}")
-        return cedula  # Retornar original si no pasa validación
-    
     def _validate_email(self, email: str) -> Optional[str]:
         """Valida formato de email"""
         if not email:
@@ -362,79 +376,6 @@ class HubSpotFieldMapper:
             return email
         
         self.logger.warning(f"Email con formato inválido: {email}")
-        return None
-    
-    def _clean_phone(self, phone: str) -> Optional[str]:
-        """Limpia número de teléfono"""
-        if not phone:
-            return None
-        
-        # Remover espacios, guiones, paréntesis
-        clean_phone = re.sub(r'[^0-9+]', '', phone)
-        
-        # Si no tiene código de país, agregar +506 (Costa Rica)
-        if clean_phone and not clean_phone.startswith('+'):
-            if len(clean_phone) == 8:  # Número local costarricense
-                clean_phone = '+506' + clean_phone
-        
-        return clean_phone if clean_phone else None
-    
-    def _format_date(self, date_value: Any) -> Optional[str]:
-        """Formatea fecha para HubSpot (timestamp en milisegundos)"""
-        if not date_value:
-            return None
-        
-        try:
-            if isinstance(date_value, datetime):
-                # Convertir a timestamp en milisegundos
-                timestamp_ms = int(date_value.timestamp() * 1000)
-                return str(timestamp_ms)
-            elif isinstance(date_value, str):
-                # Intentar parsear la fecha
-                dt = datetime.strptime(date_value, '%Y-%m-%d')
-                timestamp_ms = int(dt.timestamp() * 1000)
-                return str(timestamp_ms)
-        except Exception as e:
-            self.logger.warning(f"Error al formatear fecha {date_value}: {str(e)}")
-        
-        return None
-    
-    def _format_boolean(self, value: Any) -> Optional[str]:
-        """Formatea valor booleano para HubSpot"""
-        if value is None:
-            return None
-        
-        if isinstance(value, bool):
-            return 'true' if value else 'false'
-        
-        if isinstance(value, str):
-            value_lower = value.lower().strip()
-            if value_lower in ['true', '1', 'yes', 'sí', 'si', 'verdadero']:
-                return 'true'
-            elif value_lower in ['false', '0', 'no', 'falso']:
-                return 'false'
-        
-        if isinstance(value, (int, float)):
-            return 'true' if value != 0 else 'false'
-        
-        return None
-    
-    def _format_number(self, value: Any) -> Optional[str]:
-        """Formatea valor numérico"""
-        if value is None:
-            return None
-        
-        try:
-            if isinstance(value, (int, float)):
-                return str(value)
-            elif isinstance(value, str):
-                # Intentar convertir string a número
-                clean_value = re.sub(r'[^0-9.-]', '', value)
-                if clean_value:
-                    return str(float(clean_value))
-        except Exception as e:
-            self.logger.warning(f"Error al formatear número {value}: {str(e)}")
-        
         return None
     
     def _clean_text(self, text: str) -> Optional[str]:

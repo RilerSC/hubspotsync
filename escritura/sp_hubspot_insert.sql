@@ -1,3 +1,5 @@
+use proce;
+go
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -701,11 +703,20 @@ BEGIN
         where cestinvers in ('P','I')
     ),
 [Encargado] as (
-        select DISTINCT
+        select
+            t1.id as [HB_ID]
+            ,t2.cidasociad
+            ,t2.ccodencarg
+            ,correo
+        from hb_owners t1
+        inner join (select
             t1.ccodencarg
-            ,t2.cnombrecom
-        from covicoopebanacio.dbo.asencargad t1
-        inner join covicoopebanacio.dbo.asmaestras t2 on t1.cidasociad = t2.cidasociad
+            ,t1.cidasociad
+            ,case when t2.cemailasoc like '%coopebanacio%' then t2.cemailasoc else t2.cemailaso2 end as correo
+        from CoviCoopebanacio.dbo.asencargad t1
+        inner join CoviCoopebanacio.dbo.asmaestras t2 on t1.cidasociad=t2.cidasociad) t2 on t1.email = t2.correo
+        where t1.email is not null  
+            and t1.email != ''
     )
 
     -- ========================================================================
@@ -860,7 +871,7 @@ BEGIN
         CASE t49.Certificados WHEN 'si' THEN 'si' ELSE 'no' END AS [tiene_certificados],
         CASE
             WHEN t6.cnombinsti = 'COOPEBANACIO' THEN '000'
-            ELSE t50.cnombrecom 
+            ELSE t50.hb_id 
         END AS [encargado]
     FROM covicoopebanacio.dbo.asmaestras t1 
     LEFT JOIN [CorreoP] t2 ON t1.cidasociad = t2.cidasociad

@@ -10,9 +10,10 @@ from datetime import datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from config.settings import settings
-from utils.logger import setup_logging
+from utils.logger import setup_logging, get_logger
 from db.mssql_connector import MSSQLConnector
 from hubspot_client.writer import HubSpotWriter
+from hubspot_client.field_mapper import HubSpotFieldMapper
 
 def validate_environment():
     """Valida que el entorno esté configurado correctamente"""
@@ -57,10 +58,11 @@ def test_connections():
     return True
 
 def sync_data():
-    """Ejecuta el proceso completo de sincronización"""
-    logger = setup_logging(settings.LOG_DIR, settings.LOG_LEVEL).get_sync_logger()
+    """Ejecuta el proceso completo de sincronización usando la estrategia exitosa"""
+    logger = get_logger('hubspot_sync.main')
     
     logger.info("🚀 Iniciando sincronización SQL Server -> HubSpot")
+    logger.info("📝 Usando estrategia EXITOSA con force_all_properties=True")
     logger.info(f"Configuración: Lotes de {settings.BATCH_SIZE}, Debug: {settings.DEBUG_MODE}")
     
     start_time = datetime.now()
@@ -86,17 +88,29 @@ def sync_data():
         except Exception as e:
             logger.error(f"❌ Error en proceso INSERT: {str(e)}")
         
-        # ==================== PROCESO UPDATE ====================
+        # ==================== PROCESO UPDATE (MEJORADO) ====================
         logger.info("📝 Fase 2: Procesando contactos para UPDATE...")
+        logger.info("🔧 Usando método mejorado basado en test exitoso de cédula 110100747")
         
         try:
             update_data = db_connector.get_update_data()
             logger.info(f"📊 Datos UPDATE obtenidos: {len(update_data)} registros")
             
             if update_data:
+                # USAR EL NUEVO MÉTODO MEJORADO
                 update_stats = hubspot_writer.process_updates(update_data)
                 logger.info(f"📈 Estadísticas UPDATE: {update_stats}")
+                
+                # Evaluar éxito del proceso
+                success_rate = update_stats.get('updated', 0) / max(update_stats.get('processed', 1), 1) * 100
+                if success_rate >= 90:
+                    logger.info("🎉 UPDATE completado con EXCELENTE tasa de éxito")
+                elif success_rate >= 70:
+                    logger.warning("⚠️ UPDATE completado con tasa de éxito aceptable")
+                else:
+                    logger.error("❌ UPDATE completado con baja tasa de éxito")
             else:
+                logger.info("ℹ️ No hay datos para UPDATE")
                 logger.info("ℹ️ No hay datos para UPDATE")
                 
         except Exception as e:

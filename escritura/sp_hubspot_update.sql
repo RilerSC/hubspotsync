@@ -1,3 +1,5 @@
+use proce;
+go
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -134,8 +136,8 @@ BEGIN
     -- ========================================================================
     
     PRINT '🧹 Limpiando datos existentes...'
-    DELETE FROM [dbo].[update_contacts_hs];
     DECLARE @deleted_count INT = @@ROWCOUNT;
+    TRUNCATE TABLE [dbo].[update_contacts_hs];
     PRINT '✅ ' + CAST(@deleted_count AS VARCHAR(10)) + ' registros anteriores eliminados.'
     
     -- ========================================================================
@@ -146,25 +148,29 @@ BEGIN
     
     with 
     -- � CTE para deduplicación eficiente usando ROW_NUMBER
-    [AsociadosUnicos] as (
+[Asoci] as (
         select *,
             ROW_NUMBER() OVER (
                 PARTITION BY REPLACE(REPLACE(REPLACE(REPLACE(ccedulasoc, '-', ''), ' ', ''), '.', ''), ',', '')
-                ORDER BY 
-                    CASE WHEN ccondasoci = '01' THEN 0 ELSE 1 END,
-                    dfechainga DESC
+                ORDER BY dfechainga DESC
             ) as rn
         from covicoopebanacio.dbo.asmaestras
         where ccedulasoc IS NOT NULL 
-          AND ccedulasoc != ''
-          AND REPLACE(REPLACE(REPLACE(REPLACE(ccedulasoc, '-', ''), ' ', ''), '.', ''), ',', '') != '00000000'
+          AND ccedulasoc != ''          
     ),
-    CorreoP as (
+[AsociadosUnicos] as (
+        select *
+        from Asoci
+        where rn = 1
+          
+    ),
+CorreoP as (
     select 
         cidasociad,
         cemailasoc as correo
     from [AsociadosUnicos]
-    where cemailasoc not like '%bncr%'
+    where cemailasoc not like '%@bncr%'
+        and cemailasoc not like '%@coopebanacio%'
         and cemailasoc like '%@%'
         and rn = 1  -- Solo el registro principal por cédula
 
@@ -174,43 +180,55 @@ BEGIN
         cidasociad,
         cemailaso2 as correo
     from [AsociadosUnicos]
-    where cemailaso2 not like '%bncr%'
+    where cemailaso2 not like '%@bncr%'
+        and cemailaso2 not like '%@coopebanacio%'
         and cemailaso2 like '%@%'
         and rn = 1  -- Solo el registro principal por cédula
-        and cidasociad not in (
-            select cidasociad
-            from [AsociadosUnicos]
-            where cemailasoc not like '%bncr%'
-                and cemailasoc like '%@%'
-                and rn = 1
-        )
+        and cidasociad not in (select 
+                                    cidasociad
+                                from [AsociadosUnicos]
+                                where cemailasoc not like '%@bncr%'
+                                    and cemailasoc not like '%@coopebanacio%'
+                                    and cemailasoc like '%@%'
+                                    )
+        
+),
+[CorreoBN1] as (
+    select 
+        cidasociad,
+        ccedulasoc,
+        cemailasoc as correo,
+        dfechainga
+    from [AsociadosUnicos]
+    where cemailasoc like '%@bncr%'
+        or cemailasoc like '%@coopebanacio%'
+        and cemailasoc like '%@%'
+        and rn = 1  -- Solo el registro principal por cédula
+
+   union
+
+    select 
+        cidasociad,
+        ccedulasoc,
+        cemailaso2 as correo,
+        dfechainga
+    from [AsociadosUnicos]
+    where cemailaso2 like '%@bncr%'
+        or cemailaso2 like '%@coopebanacio%'
+        and cemailaso2 like '%@%'
+        and rn = 1  -- Solo el registro principal por cédula
+               
+    ),
+[CorreoBN2] as (
+    select *,
+    ROW_NUMBER() over(partition by ccedulasoc order by dfechainga desc) as rn
+    from [CorreoBN1]
 ),
 [CorreoBN] as (
-    select 
-        cidasociad,
-        cemailasoc as correo
-    from [AsociadosUnicos]
-    where cemailasoc like '%bncr%'
-        and cemailasoc like '%@%'
-        and rn = 1  -- Solo el registro principal por cédula
-
-    union
-
-    select 
-        cidasociad,
-        cemailaso2 as correo
-    from [AsociadosUnicos]
-    where cemailaso2 like '%bncr%'
-        and cemailaso2 like '%@%'
-        and rn = 1  -- Solo el registro principal por cédula
-        and cidasociad not in (
-            select cidasociad
-            from [AsociadosUnicos]
-            where cemailasoc like '%bncr%'
-                and cemailasoc like '%@%'
-                and rn = 1
-        )
-    ),
+    select *
+    from [CorreoBN2]
+    where rn='1'
+),
 [Provincias] as (
         select
             t1.aso_cidasociad
@@ -716,11 +734,20 @@ BEGIN
         where cestinvers in ('P','I')
     ),
 [Encargado] as (
-        select DISTINCT
+        select
+            t1.id as [HB_ID]
+            ,t2.cidasociad
+            ,t2.ccodencarg
+            ,correo
+        from hb_owners t1
+        inner join (select
             t1.ccodencarg
-            ,t2.cnombrecom
-        from covicoopebanacio.dbo.asencargad t1
-        inner join covicoopebanacio.dbo.asmaestras t2 on t1.cidasociad = t2.cidasociad
+            ,t1.cidasociad
+            ,case when t2.cemailasoc like '%coopebanacio%' then t2.cemailasoc else t2.cemailaso2 end as correo
+        from CoviCoopebanacio.dbo.asencargad t1
+        inner join CoviCoopebanacio.dbo.asmaestras t2 on t1.cidasociad=t2.cidasociad) t2 on t1.email = t2.correo
+        where t1.email is not null  
+            and t1.email != ''
     )
 
     -- ========================================================================
@@ -775,7 +802,7 @@ BEGIN
         [vivienda_patrimonial],
         [credito_capitalizable],
         [capitalizable_2],
-        [refundicion_ii],
+        [refuncion_ii],
         [capitalizable_3],
         [tecnologico],
         [credifacil],
@@ -798,10 +825,9 @@ BEGIN
         [tiene_certificados],
         [encargado]
     )
-    SELECT DISTINCT
+    SELECT 
         t1.cidasociad AS [numero_asociado],
-        -- 🔑 Campo clave para HubSpot - LIMPIEZA DE CÉDULA (solo números)
-        REPLACE(REPLACE(REPLACE(REPLACE(t1.ccedulasoc, '-', ''), ' ', ''), '.', ''), ',', '') AS [no__de_cedula],
+        REPLACE(REPLACE(REPLACE(REPLACE(t1.ccedulasoc, '-', ''), ' ', ''), '.', ''), ',', '') AS [no__de_cedula], -- 🔑 Campo clave para HubSpot - LIMPIEZA DE CÉDULA (solo números)
         t1.cnombasoci AS [firstname],
         TRIM(t1.capellido1) + ' ' + RTRIM(t1.capellido2) AS [lastname],
         t2.correo AS [email],
@@ -876,7 +902,7 @@ BEGIN
         CASE t49.Certificados WHEN 'si' THEN 'si' ELSE 'no' END AS [tiene_certificados],
         CASE
             WHEN t6.cnombinsti = 'COOPEBANACIO' THEN '000'
-            ELSE t50.cnombrecom 
+            ELSE t50.hb_id 
         END AS [encargado]
     FROM [AsociadosUnicos] t1 
     LEFT JOIN [CorreoP] t2 ON t1.cidasociad = t2.cidasociad
@@ -1001,10 +1027,5 @@ BEGIN
     ORDER BY sync_id; */
     
 END
-
--- ========================================================================
--- 🚀 COMANDO PARA EJECUTAR EL PROCEDIMIENTO
--- ========================================================================
--- EXEC sp_hubspot_actualizar
 
 GO

@@ -36,6 +36,9 @@ class Settings:
     QUERY_INSERT_FILE: str = os.path.join(os.path.dirname(__file__), '..', 'HB_INSERT.sql')
     QUERY_UPDATE_FILE: str = os.path.join(os.path.dirname(__file__), '..', 'HB_UPDATE.sql')
     
+    # ==================== TESTING ====================
+    TEST_CEDULA: str = "107150612"  # Cédula para pruebas de un solo registro
+    
     @classmethod
     def validate_required_settings(cls) -> bool:
         """Valida que todas las configuraciones requeridas estén presentes"""
