@@ -13,6 +13,12 @@ Desarrollar y poner en producción un sistema robusto y auditable para la sincro
 
 ## 2. Principales Actividades Realizadas
 
+### ⚡ Coordinador de Ejecución Principal - AGOSTO 2025
+- **ARCHIVO CREADO**: `run_full_sync.py` - Coordinador principal para ejecución completa
+- **FUNCIONALIDAD**: Ejecuta automáticamente INSERT + UPDATE en secuencia correcta
+- **PROPÓSITO**: Evitar errores de ejecución manual y garantizar orden correcto de procesos
+- **PARA OTROS EQUIPOS**: Archivo único y principal para ejecutar todo el proceso de escritura
+
 ### 🔄 Separación de Procesos
 - Se separó la lógica de **INSERT** y **UPDATE** para contactos HubSpot.
 - Se crearon scripts independientes para cada proceso: `production_update.py` y `production_insert_full.py`.

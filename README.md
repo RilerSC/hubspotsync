@@ -21,6 +21,9 @@ Sistema empresarial avanzado para la sincronización automatizada de datos entre
 
 ## 🎯 Entidades Sincronizadas
 
+### 📥 Lectura: HubSpot → SQL Server (main.py)
+Ejecutar: `python main.py`
+
 | Entidad | Descripción | Volumen Típico |
 |---------|-------------|----------------|
 | **Deals** | Negocios y oportunidades de venta | ~2,000 registros |
@@ -28,6 +31,17 @@ Sistema empresarial avanzado para la sincronización automatizada de datos entre
 | **Contacts** | Contactos y leads | ~5,000 registros |
 | **Owners** | Propietarios y usuarios | ~25 registros |
 | **Pipelines** | Estructuras de procesos | ~155 registros |
+
+### 📤 Escritura: SQL Server → HubSpot (escritura/)
+**⚡ EJECUTAR**: `python escritura/run_full_sync.py`
+
+| Proceso | Script | Descripción |
+|---------|---------|-------------|
+| **Coordinador Principal** | `run_full_sync.py` | 🎯 **USAR ESTE ARCHIVO** - Ejecuta todo automáticamente |
+| INSERT | `production_insert_full.py` | Contactos nuevos (ejecutado automáticamente) |
+| UPDATE | `production_update.py` | Contactos existentes (ejecutado automáticamente) |
+
+> 🚨 **IMPORTANTE**: Para escritura a HubSpot, usar SOLO `run_full_sync.py` que coordina ambos procesos en el orden correcto.
 
 ## 📊 Rendimiento
 

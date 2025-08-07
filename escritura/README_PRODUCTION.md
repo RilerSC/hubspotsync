@@ -1,5 +1,24 @@
 # 🚀 IMPLEMENTACIÓN PRODUCTIVA - HUBSPOT SYNC
 
+## ⚡ ARCHIVO PRINCIPAL DE EJECUCIÓN
+
+### 🎯 **IMPORTANTE**: Usar `run_full_sync.py` para ejecución completa
+
+**ARCHIVO COORDINADOR PRINCIPAL**: `escritura/run_full_sync.py`
+
+Este archivo ejecuta automáticamente todo el proceso de escritura a HubSpot en el orden correcto:
+
+1. **Fase 1**: `production_insert_full.py` - Inserta contactos nuevos
+2. **Fase 2**: `production_update.py` - Actualiza contactos existentes
+
+### 🚨 **PARA OTROS PROGRAMADORES/EQUIPOS:**
+- **✅ USAR**: `python run_full_sync.py` (ejecuta todo el proceso)
+- **❌ NO USAR**: Scripts individuales a menos que sea específicamente necesario
+- **📁 UBICACIÓN**: `escritura/run_full_sync.py`
+- **🔄 ORDEN AUTOMÁTICO**: INSERT primero, UPDATE después
+
+---
+
 ## 📋 Resumen de Mejoras Implementadas
 
 Basado en el **ÉXITO TOTAL** del test con cédula `110100747` que logró **100% de tasa de éxito** (43/43 propiedades escritas correctamente), se implementaron las siguientes mejoras:
