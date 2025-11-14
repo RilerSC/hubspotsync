@@ -1,0 +1,57 @@
+# ----------------------------------------------------
+# A. DEPENDENCIAS DE LENGUAJE Y PAQUETES (CRÍTICO)
+# ----------------------------------------------------
+# Ignorar dependencias de Node.js (la carpeta más grande y ruidosa)
+node_modules/
+# Ignorar dependencias de Python si usas un Backend en Python (Django/Flask)
+venv/
+.venv/
+# Ignorar dependencias de Ruby, etc.
+vendor/
+
+# ----------------------------------------------------
+# B. ARCHIVOS COMPILADOS Y DE SALIDA (BUILD)
+# ------------------------------------
+# Archivos generados por Webpack, Next.js, Babel, o el compilador de TypeScript
+dist/
+build/
+out/
+.next/
+# Archivos de caché
+.parcel-cache/
+.nuxt/
+.vercel/
+
+# ----------------------------------------------------
+# C. METADATOS Y CONFIGURACIÓN LOCAL
+# ------------------------------------
+# Ignorar los metadatos de tu editor o sistema operativo
+# NOTA: .vscode/settings.json y .vscode/extensions.json NO se ignoran
+#       porque son configuración del proyecto, no metadatos personales
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+# Ignorar cualquier caché temporal o de herramientas
+.cache/
+.temp/
+tmp/
+temp/
+logs/
+*.log
+
+# ----------------------------------------------------
+# D. ARCHIVOS DE BLOQUEO (LOCKFILES) Y DE ENTORNO
+# ----------------------------------------------------
+# El AI solo necesita el package.json, no los archivos de bloqueo detallados.
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos de entorno y secretos (por seguridad y porque no son código fuente)
+.env
+.env.local
+.env.development
+.env.production
+
