@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+    "ms-mssql.mssql",
+    "redhat.vscode-yaml",
+    "eamodio.gitlens",
+    "usernamehw.errorlens",
+    "njpwerner.autodocstring",
+    "ms-python.black-formatter",
+    "charliermarsh.ruff"
+  ],
+  "unwantedRecommendations": []
+}
