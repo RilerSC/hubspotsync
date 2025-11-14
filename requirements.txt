@@ -2,18 +2,22 @@
 # Instalar con: pip install -r requirements.txt
 # Optimizado para Python 3.13+
 
-# Dependencias principales (lectura: HubSpot → SQL Server)
+# ==================== DEPENDENCIAS PRINCIPALES (LECTURA: HubSpot → SQL Server) ====================
 python-dotenv>=1.0.0     # Manejo de variables de entorno
 pyodbc>=5.0.0           # Conector ODBC para SQL Server
 requests>=2.31.0        # Cliente HTTP para HubSpot API
 tabulate>=0.9.0         # Formateo de tablas para reportes
-pandas>=2.0.0           # Análisis de datos (compatibilidad completa)
 
-# Dependencias módulo escritura (escritura: SQL Server → HubSpot)
+# ==================== DEPENDENCIAS MÓDULO ESCRITURA (SQL Server → HubSpot) ====================
 hubspot-api-client>=9.0.0  # SDK oficial de HubSpot para escritura
-loguru>=0.7.0              # Sistema de logging avanzado para escritura
-colorama>=0.4.6            # Colores en terminal para logging
+colorama>=0.4.6            # Colores en terminal para logging (usado en escritura/utils/logger.py)
 
-# Dependencias opcionales para desarrollo
+# ==================== DEPENDENCIAS OPCIONALES (USADAS EN MÓDULOS ESPECÍFICOS) ====================
+# pandas>=2.0.0        # Análisis de datos - USADO en hubspot/fetch_contacts.py para análisis estadístico
+#                      # Si no necesitas análisis estadístico de contactos, puedes comentar esta línea
+
+# ==================== DEPENDENCIAS DE DESARROLLO (OPCIONALES) ====================
 # jupyter>=1.0.0        # Notebooks para análisis
 # matplotlib>=3.7.0     # Gráficos y visualizaciones
+# black>=23.0.0         # Formateador de código Python
+# ruff>=0.1.0           # Linter rápido para Python
