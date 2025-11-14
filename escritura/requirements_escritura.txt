@@ -1,5 +1,12 @@
-python-dotenv
-pyodbc
-requests
-hubspot-api-client
-loguru
+# Dependencias del módulo de escritura (SQL Server → HubSpot)
+# Instalar con: pip install -r requirements_escritura.txt
+
+python-dotenv          # Manejo de variables de entorno
+pyodbc                 # Conector ODBC para SQL Server
+requests               # Cliente HTTP (si se necesita para consultas adicionales)
+hubspot-api-client     # SDK oficial de HubSpot para escritura
+colorama               # Colores en terminal para logging (usado en utils/logger.py)
+
+# NOTA: loguru fue removido - el proyecto usa logging estándar de Python + colorama
+# Si necesitas loguru en el futuro, descomenta la siguiente línea:
+# loguru
