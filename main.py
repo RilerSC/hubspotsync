@@ -32,16 +32,25 @@ Licencia:           Uso exclusivo del autor. Prohibida la distribución sin auto
 ================================================================================
 """
 
-# ==================== IMPORTS DE MÓDULOS HUBSPOT ====================
-# Importa todas las funciones de extracción y procesamiento de HubSpot
+# ==================== IMPORTS ESTÁNDAR ====================
+# Librerías estándar del sistema
 import os  # Variables de entorno del sistema
 from pathlib import Path  # Manejo de rutas de archivos multiplataforma
 
 import pyodbc  # Conector ODBC para SQL Server
-
-# ==================== IMPORTS ESTÁNDAR ====================
-# Librerías estándar para configuración, base de datos y sistema operativo
 from dotenv import load_dotenv  # Carga variables de entorno desde archivo .env
+
+# ==================== CONFIGURACIÓN INICIAL ====================
+# Carga las variables de entorno ANTES de importar módulos que las necesitan
+env_path = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
+# ==================== IMPORTS DE MÓDULOS HUBSPOT ====================
+# Importa todas las funciones de extracción y procesamiento de HubSpot
+# ==================== IMPORTS DE SEGURIDAD ====================
+# Importar funciones de seguridad directamente sin pasar por el __init__.py de utils
+# (para evitar dependencias de colorama que no están instaladas en este entorno)
+import importlib.util
 
 from hubspot.fetch_contacts import (
     fetch_contacts_from_hubspot,
@@ -61,10 +70,18 @@ from hubspot.fetch_tickets import (
 )
 from hubspot.fetch_tickets_pipelines import fetch_ticket_pipelines_as_table
 
-# ==================== CONFIGURACIÓN INICIAL ====================
-# Carga las variables de entorno desde el archivo .env ubicado en el directorio raíz
-env_path = Path(__file__).resolve().parent / ".env"
-load_dotenv(dotenv_path=env_path)
+_escritura_path = Path(__file__).resolve().parent / "escritura"
+_security_module_path = _escritura_path / "utils" / "security.py"
+
+# Cargar el módulo de seguridad directamente
+_spec = importlib.util.spec_from_file_location("security", _security_module_path)
+_security_module = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_security_module)
+
+# Importar las funciones necesarias
+sanitize_sql_identifier = _security_module.sanitize_sql_identifier
+sanitize_sql_identifiers = _security_module.sanitize_sql_identifiers
+sanitize_string = _security_module.sanitize_string
 
 # ==================== FUNCIÓN PRINCIPAL ====================
 
@@ -360,6 +377,7 @@ def create_table(cursor, table_name, columns):
     Descripción:
         Genera dinámicamente una tabla SQL Server con todas las columnas
         como NVARCHAR(MAX) para máxima compatibilidad con datos HubSpot.
+        **SEGURIDAD:** Sanitiza nombres de tablas y columnas para prevenir SQL Injection.
 
     Parámetros:
         cursor (pyodbc.Cursor): Cursor activo de conexión SQL Server
@@ -375,10 +393,23 @@ def create_table(cursor, table_name, columns):
 
     Excepciones:
         - pyodbc.Error: En caso de error SQL o sintaxis
+        - SecurityError: Si los nombres de tabla o columnas son inválidos
     """
+    # SEGURIDAD: Sanitizar nombre de tabla
+    try:
+        sanitized_table = sanitize_sql_identifier(table_name)
+    except Exception as e:
+        raise ValueError(f"Nombre de tabla inválido: {str(e)}")
+
+    # SEGURIDAD: Sanitizar nombres de columnas
+    try:
+        sanitized_columns = sanitize_sql_identifiers(columns)
+    except Exception as e:
+        raise ValueError(f"Nombre de columna inválido: {str(e)}")
+
     # Generar definiciones de columnas con corchetes para nombres especiales
-    column_defs = ", ".join([f"[{col}] NVARCHAR(MAX)" for col in columns])
-    cursor.execute(f"CREATE TABLE {table_name} ({column_defs})")
+    column_defs = ", ".join([f"[{col}] NVARCHAR(MAX)" for col in sanitized_columns])
+    cursor.execute(f"CREATE TABLE [{sanitized_table}] ({column_defs})")
 
 
 def drop_table(cursor, table_name):
@@ -388,6 +419,7 @@ def drop_table(cursor, table_name):
     Descripción:
         Ejecuta DROP TABLE IF EXISTS para remover tablas existentes
         antes de crear versiones actualizadas.
+        **SEGURIDAD:** Sanitiza el nombre de tabla para prevenir SQL Injection.
 
     Parámetros:
         cursor (pyodbc.Cursor): Cursor activo de conexión SQL Server
@@ -401,8 +433,17 @@ def drop_table(cursor, table_name):
 
     Nota:
         Operación destructiva - elimina todos los datos existentes
+
+    Excepciones:
+        - SecurityError: Si el nombre de tabla es inválido
     """
-    cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
+    # SEGURIDAD: Sanitizar nombre de tabla
+    try:
+        sanitized_table = sanitize_sql_identifier(table_name)
+    except Exception as e:
+        raise ValueError(f"Nombre de tabla inválido: {str(e)}")
+
+    cursor.execute(f"DROP TABLE IF EXISTS [{sanitized_table}]")
 
 
 # ==================== 🔄 FUNCIONES DE SINCRONIZACIÓN PRINCIPAL ====================
@@ -599,10 +640,17 @@ def insert_entities_data(cursor, table_name, entities_data, columns, entity_type
     Performance:
         Optimizada específicamente para 5000+ registros con 262 columnas (1.3M+ valores)
     """
+    # SEGURIDAD: Sanitizar nombre de tabla y columnas
+    try:
+        sanitized_table = sanitize_sql_identifier(table_name)
+        sanitized_columns = sanitize_sql_identifiers(columns)
+    except Exception as e:
+        raise ValueError(f"Error de seguridad en nombres SQL: {str(e)}")
+
     # Construir query de inserción con placeholders seguros
-    placeholders = ", ".join(["?" for _ in columns])
-    columns_str = ", ".join([f"[{col}]" for col in columns])
-    query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
+    placeholders = ", ".join(["?" for _ in sanitized_columns])
+    columns_str = ", ".join([f"[{col}]" for col in sanitized_columns])
+    query = f"INSERT INTO [{sanitized_table}] ({columns_str}) VALUES ({placeholders})"
 
     # Configuración optimizada para grandes volúmenes
     batch_size = 500  # Aumentado para mejor throughput con muchas columnas
@@ -633,8 +681,12 @@ def insert_entities_data(cursor, table_name, entities_data, columns, entity_type
                         # Mantener valor original si la conversión falla
                         pass
 
-                # Preparar valor para inserción SQL
-                values.append(str(val) if val is not None else None)
+                # SEGURIDAD: Sanitizar valor antes de inserción SQL
+                if val is not None:
+                    sanitized_val = sanitize_string(val, max_length=4000)  # NVARCHAR(MAX) pero limitamos para seguridad
+                    values.append(sanitized_val)
+                else:
+                    values.append(None)
 
             batch_values.append(tuple(values))
 
@@ -709,10 +761,17 @@ def insert_table_data(cursor, table_name, table_data, columns):
     Performance:
         Optimizada para datasets pequeños a medianos (< 5000 registros)
     """
+    # SEGURIDAD: Sanitizar nombre de tabla y columnas
+    try:
+        sanitized_table = sanitize_sql_identifier(table_name)
+        sanitized_columns = sanitize_sql_identifiers(columns)
+    except Exception as e:
+        raise ValueError(f"Error de seguridad en nombres SQL: {str(e)}")
+
     # Construir query de inserción con placeholders seguros
-    placeholders = ", ".join(["?" for _ in columns])
-    columns_str = ", ".join([f"[{col}]" for col in columns])
-    query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
+    placeholders = ", ".join(["?" for _ in sanitized_columns])
+    columns_str = ", ".join([f"[{col}]" for col in sanitized_columns])
+    query = f"INSERT INTO [{sanitized_table}] ({columns_str}) VALUES ({placeholders})"
 
     # Configuración optimizada para datos tabulares
     batch_size = 200  # Tamaño apropiado para datos estructurados
